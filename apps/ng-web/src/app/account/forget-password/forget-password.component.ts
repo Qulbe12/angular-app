@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthMockService} from "@trucks/ng-services";
-import {Router} from "@angular/router";
-import {AuthUserDto, ForgetPassword} from "@trucks/core-shared";
+import { AuthService } from "@trucks/ng-services";
+import { Router } from "@angular/router";
+import { AuthUserDto, ForgetPassword } from "@trucks/core-shared";
 
 @Component({
   selector: 'x-forget-password',
@@ -9,7 +9,7 @@ import {AuthUserDto, ForgetPassword} from "@trucks/core-shared";
   styleUrls: ['./forget-password.component.css'],
 })
 export class ForgetPasswordComponent {
-  constructor(private authService: AuthMockService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
 
   model = new ForgetPassword()

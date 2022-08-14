@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthMockService} from "@trucks/ng-services";
-import {Router} from "@angular/router";
-import {AuthUserDto, RegisterModel, ResetPassword} from "@trucks/core-shared";
+import { Component } from '@angular/core';
+import { AuthService } from "@trucks/ng-services";
+import { Router } from "@angular/router";
+import { AuthUserDto, ResetPassword } from "@trucks/core-shared";
 
 @Component({
   selector: 'x-reset-password',
@@ -9,7 +9,7 @@ import {AuthUserDto, RegisterModel, ResetPassword} from "@trucks/core-shared";
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent {
-  constructor(private authService: AuthMockService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
 
   model = new ResetPassword()

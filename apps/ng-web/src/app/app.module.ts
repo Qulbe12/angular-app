@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AccountModule } from './account/account.module';
 import {AdminModule} from "./admin/admin.module";
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -13,9 +15,10 @@ import {AdminModule} from "./admin/admin.module";
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule
+    AdminModule, HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
