@@ -1,5 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
-  "projects": {}
+  "projects": {
+    "core-shared": "libs/core-shared",
+    "ng-services": "libs/ng-services",
+    "ng-web": "apps/ng-web",
+    "ng-web-e2e": "apps/ng-web-e2e"
+  }
 }
