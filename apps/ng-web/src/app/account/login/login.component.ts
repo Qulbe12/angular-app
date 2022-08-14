@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthUserDto, LoginModel} from "@trucks/core-shared";
-import {AuthMockService} from "@trucks/ng-services";
-import {Router} from "@angular/router";
+import { AuthUserDto, LoginModel } from "@trucks/core-shared";
+
+import { Router } from "@angular/router";
+import { AuthService } from '@trucks/ng-services';
 
 @Component({
   selector: 'x-login',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthMockService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
 
   model = new LoginModel

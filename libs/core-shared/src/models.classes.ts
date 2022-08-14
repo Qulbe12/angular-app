@@ -5,8 +5,7 @@ export class ForgetPassword {
 }
 
 export class ResetPassword {
-  oldPassword = ''
-  newPassword = '';
+  password = '';
   confirmPassword = ''
 }
 
@@ -24,6 +23,6 @@ export class RegisterModel {
 }
 
 export class LoginModel {
-  name = '';
+  email = '';
   password = '';
 }

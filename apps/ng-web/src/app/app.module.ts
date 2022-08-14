@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AccountModule } from './account/account.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -11,9 +12,9 @@ import { AccountModule } from './account/account.module';
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
-    AccountModule,
+    AccountModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

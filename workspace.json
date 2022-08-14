@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "core-shared": "libs/core-shared",
+    "ng-server": "apps/ng-server",
     "ng-services": "libs/ng-services",
     "ng-web": "apps/ng-web",
     "ng-web-e2e": "apps/ng-web-e2e"
