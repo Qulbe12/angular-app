@@ -1,0 +1,22 @@
+<x-page-center>
+
+  <div>
+    <h3>Trucks Login</h3>
+    <small class="text-mute">Enter your credentails to login</small>
+
+    <form action="" class="flex flex-col gap-2 mt-2">
+      <x-input-email [(ngModel)]="model.name" name="model.email" label="Username"
+                     placeholder="Name"></x-input-email>
+      <x-input-email [(ngModel)]="model.email" name="model.name" label="Email"
+                     placeholder="someone@email.com"></x-input-email>
+      <x-input-password [(ngModel)]="model.password" name="model.password" label="Password"
+                        placeholder="********"></x-input-password>
+      <x-input-password [(ngModel)]="model.confirmPassword" name="model.password" label="Confirm Password"
+                        placeholder="********"></x-input-password>
+    </form>
+    <button type="submit" (click)="submit()">Submit</button>
+
+
+  </div>
+
+</x-page-center>
