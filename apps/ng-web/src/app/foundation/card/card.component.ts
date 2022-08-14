@@ -11,4 +11,5 @@ export class CardComponent {
   name= "qulbe"
   placeholder = "email"
   placeholder2 = "password"
+  class = ""
 }
