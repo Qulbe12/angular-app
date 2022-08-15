@@ -5,8 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
-  constructor() {}
+export class DashboardComponent {
+  clickValue : boolean = false
 
-  ngOnInit(): void {}
+  onClick(){
+    this.clickValue = !this.clickValue
+  }
+
+  clickedOutside(){
+    this.clickValue = false
+  }
 }

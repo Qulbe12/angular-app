@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../_entities/user.entity';
 import { AccountController } from './account.controller';
-import { JwtModule } from '@nestjs/jwt';
+
 import { jwtConstant } from '../_strategies/jwt.strategy';
+import {JwtModule} from "@nestjs/jwt";
 @Module({
   imports: [TypeOrmModule.forFeature([User]),
   JwtModule.register({ secret: jwtConstant })],
