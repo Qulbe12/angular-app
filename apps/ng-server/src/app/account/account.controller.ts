@@ -7,14 +7,17 @@ import { Observable } from 'rxjs';
 import { Repository } from 'typeorm';
 import { User } from '../_entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { MailerService } from '@nestjs-modules/mailer'
+
 
 @Controller('account')
-export class AccountController implements IAccountService {
+export class AccountController {
 
 
     constructor(
         @InjectRepository(User) private userRepo: Repository<User>,
-        private jwtService: JwtService
+        private jwtService: JwtService,
+        private mailerService: MailerService
     ) { }
 
 
@@ -26,7 +29,6 @@ export class AccountController implements IAccountService {
         if (isEmailNotAvailable) {
             throw new HttpException('email already taken , enter other email ', HttpStatus.UNAUTHORIZED)
         }
-
         const savedUser = await this.userRepo.save(model)
         const payload = { id: savedUser.id, email: savedUser.email, }
         const accessToken = this.jwtService.sign(payload)
@@ -50,14 +52,71 @@ export class AccountController implements IAccountService {
             throw new HttpException('invalid email or password', HttpStatus.UNAUTHORIZED)
         }
     }
+    @Post('forget')
+    async forgetPassword(@Body() model: ForgetPassword) {
 
-    forgetPassword(model: ForgetPassword): AuthUserDto | Observable<AuthUserDto> {
-        throw new Error('Method not implemented.');
+        const found = await this.userRepo.findOneBy({ email: model.email })
+        if (!found) {
+            throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
+        }
+        else {
+            const payload = { id: found.id, email: found.email, }
+            const accessToken = this.jwtService.sign(payload)
+            this.sendResetLink(found.email)
+            return {
+                email: found.email,
+                token: accessToken
+            }
+        }
     }
 
 
     resetPassword(model: ResetPassword): string | Observable<string> {
         throw new Error('Method not implemented.');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // helpers
+    sendResetLink(toEmail: string) {
+        this.mailerService
+            .sendMail({
+                to: toEmail, // list of receivers
+                from: 'noreply@nestjs.com', // sender address
+                subject: 'Testing Nest MailerModule ✔', // Subject line
+                text: 'welcome', // plaintext body
+                html: '<a href="http://localhost:4200/resetpassword">Open Link</a>', // HTML body content
+            })
+            .then((pass) => { console.log(pass) })
+            .catch((err) => { console.log(err) });
     }
 
 
