@@ -15,6 +15,8 @@ import { BaseComponent } from './base.class';
 import { TableComponent } from './table/table.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
+import { NavBarDashboardComponent } from './nav-bar-dashboard/nav-bar-dashboard.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { DropDownComponent } from './drop-down/drop-down.component';
     TableComponent,
     SearchInputComponent,
     DropDownComponent,
+    NavBarDashboardComponent,
+    SideBarComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -46,7 +50,9 @@ import { DropDownComponent } from './drop-down/drop-down.component';
     InputCurrencyComponent,
     TableComponent,
     SearchInputComponent,
-    DropDownComponent
+    DropDownComponent,
+    NavBarDashboardComponent,
+    SideBarComponent
   ],
   providers: [CurrencyPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
