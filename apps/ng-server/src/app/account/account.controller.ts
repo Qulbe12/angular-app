@@ -8,10 +8,12 @@ import { Repository } from 'typeorm';
 import { User } from '../_entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { MailerService } from '@nestjs-modules/mailer'
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
+@ApiBearerAuth()
 @Controller('account')
-export class AccountController implements  IAccountService{
+export class AccountController implements IAccountService {
 
 
     constructor(
@@ -35,6 +37,8 @@ export class AccountController implements  IAccountService{
         return {
             email: savedUser.email,
             token: accessToken,
+            name: savedUser.name,
+            role: 'dummy'
         }
 
     }
@@ -46,7 +50,9 @@ export class AccountController implements  IAccountService{
             const accessToken = this.jwtService.sign(payload)
             return {
                 email: foundUser.email,
-                token: accessToken
+                token: accessToken,
+                name: foundUser.name,
+                role: 'dummy'
             }
         } else {
             throw new HttpException('invalid email or password', HttpStatus.UNAUTHORIZED)

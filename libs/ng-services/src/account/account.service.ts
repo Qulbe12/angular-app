@@ -20,11 +20,11 @@ export class AccountService implements IAccountService {
     //
     // }
     //
-    // register(model: RegisterModel): Observable<AuthUserDto> {
-    //
-    //     return this.http.post<AuthUserDto>('http://localhost:3333/api/account/register', model)
-    //
-    // }
+    register(model: RegisterModel): Observable<AuthUserDto> {
+
+        return this.http.post<AuthUserDto>('http://localhost:3333/api/account/register', model)
+
+    }
     //
 
     //
