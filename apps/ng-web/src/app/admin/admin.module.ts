@@ -8,7 +8,10 @@ import {ClickOutsideDirective} from "./dashboard/clickOutside.directive";
 import {LayoutModule} from "../layout/layout.module";
 
 @NgModule({
-  declarations: [DashboardComponent , ClickOutsideDirective],
-  imports: [CommonModule, AdminRoutingModule, FoundationModule, LayoutModule],
+    declarations: [DashboardComponent, ClickOutsideDirective],
+    imports: [CommonModule, AdminRoutingModule, FoundationModule, LayoutModule],
+    exports: [
+        ClickOutsideDirective
+    ]
 })
 export class AdminModule {}

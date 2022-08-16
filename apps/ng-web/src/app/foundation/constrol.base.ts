@@ -15,13 +15,10 @@ export const generateValueAccessor = (t: any) => {
 }
 
 @Component({ template: "" })
-export class BaseComponent<T> implements ControlValueAccessor {
+export class ControlBaseComponent<T> implements ControlValueAccessor {
 
   //The internal data model
   private innerValue: any = ''
-
-
-
 
   //Placeholders for the callbacks which are later provided
   //by the Control Value Accessor

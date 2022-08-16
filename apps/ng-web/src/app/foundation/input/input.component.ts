@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BaseComponent, generateValueAccessor} from "../base.class";
+import {ControlBaseComponent, generateValueAccessor} from "../constrol.base";
 
 @Component({
   template: ''
 })
-export class InputComponent<T> extends BaseComponent<T>{
+export class InputComponent<T> extends ControlBaseComponent<T>{
   @Input()
   placeholder = ""
 
@@ -13,4 +13,7 @@ export class InputComponent<T> extends BaseComponent<T>{
 
   @Input()
   label = "Input Label"
+
+  @Input()
+  errors: string[] | null = null;
 }

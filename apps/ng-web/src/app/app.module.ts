@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AccountModule } from './account/account.module';
 import {AdminModule} from "./admin/admin.module";
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { PartialsModule } from './partials/partials.module';
+import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-configurator.interceptor";
 
 
 
@@ -15,10 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule, HttpClientModule
+    AdminModule, HttpClientModule, PartialsModule
 
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenConfiguratorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
