@@ -11,7 +11,7 @@ import { MailerService } from '@nestjs-modules/mailer'
 
 
 @Controller('account')
-export class AccountController {
+export class AccountController implements  IAccountService{
 
 
     constructor(

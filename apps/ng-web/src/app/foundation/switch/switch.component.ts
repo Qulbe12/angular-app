@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BaseComponent , generateValueAccessor} from "../base.class";
+import {ControlBaseComponent , generateValueAccessor} from "../constrol.base";
 
 @Component({
   selector: 'x-switch',
@@ -7,7 +7,7 @@ import {BaseComponent , generateValueAccessor} from "../base.class";
   styleUrls: ['./switch.component.css'],
   providers:[generateValueAccessor(SwitchComponent)]
 })
-export class SwitchComponent extends BaseComponent<boolean>{
+export class SwitchComponent extends ControlBaseComponent<boolean>{
 
 
 

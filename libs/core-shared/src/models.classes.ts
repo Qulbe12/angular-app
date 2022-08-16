@@ -1,4 +1,18 @@
-import {IS_NOT_EMPTY, IsNotEmpty} from "class-validator";
+import {IS_NOT_EMPTY, IsEmail, IsNotEmpty, MaxLength, MinLength} from "class-validator";
+
+export class LoginModel {
+
+  @IsNotEmpty()
+  @IsEmail()
+  email = '';
+
+  @IsNotEmpty()
+  @MinLength(6)
+  password = '';
+
+  rememberMe = false
+}
+
 
 export class ForgetPassword {
 
@@ -23,9 +37,3 @@ export class RegisterModel {
   terms = false
 }
 
-export class LoginModel {
-  @IsNotEmpty()
-  email = '';
-  @IsNotEmpty()
-  password = '';
-}

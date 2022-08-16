@@ -1,0 +1,18 @@
+div{
+  @apply
+  w-5
+  h-5
+  bg-white
+  cursor-pointer
+  border
+  border-gray-400
+}
+
+section {
+  @apply flex gap-2 items-center
+}
+
+.checked {
+@apply bg-blue-600
+  text-white
+}

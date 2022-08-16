@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {InputComponent} from "../input/input.component";
-import {generateValueAccessor} from "../base.class";
+import {generateValueAccessor} from "../constrol.base";
 
 @Component({
   selector: 'x-input-email',

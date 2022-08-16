@@ -1,22 +1,23 @@
 <x-page-center>
+  <x-card>
+    <x-form>
+      <x-form-header title="Create Account">
+        Provide your personal information to create new account. If you already have an account then <a
+        routerLink="/login">Login</a> to access.
+      </x-form-header>
+      <x-input-text [(ngModel)]="model.name" label="Full Name"></x-input-text>
+      <x-input-email [(ngModel)]="model.email" label="Email Address"></x-input-email>
+      <x-input-password [(ngModel)]="model.password"  label="Password"></x-input-password>
+      <x-input-password [(ngModel)]="model.confirmPassword"  label="Confirm Password"></x-input-password>
+      <div class="py-2">
+        <x-input-check [(ngModel)]="model.terms" >I agree with all <a href="">terms and conditions</a>.</x-input-check>
+      </div>
 
-  <div>
-    <h3>Trucks Login</h3>
-    <small class="text-mute">Enter your credentails to login</small>
+      <x-form-footer>
+        <div></div>
+        <x-button (onClick)="submit()" >Continue</x-button>
+      </x-form-footer>
 
-    <form action="" class="flex flex-col gap-2 mt-2">
-      <x-input-email [(ngModel)]="model.name" name="model.email" label="Username"
-                     placeholder="Name"></x-input-email>
-      <x-input-email [(ngModel)]="model.email" name="model.name" label="Email"
-                     placeholder="someone@email.com"></x-input-email>
-      <x-input-password [(ngModel)]="model.password" name="model.password" label="Password"
-                        placeholder="********"></x-input-password>
-      <x-input-password [(ngModel)]="model.confirmPassword" name="model.password" label="Confirm Password"
-                        placeholder="********"></x-input-password>
-    </form>
-    <button type="submit" (click)="submit()">Submit</button>
-
-
-  </div>
-
+    </x-form>
+  </x-card>
 </x-page-center>

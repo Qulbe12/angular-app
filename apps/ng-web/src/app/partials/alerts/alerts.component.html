@@ -1,0 +1,5 @@
+<div class="bg-red-100 p-3 rounded " *ngIf="errors.length > 0" >
+  <div *ngFor="let error of errors">
+    <span class="text-sm capitalize" >{{error}}</span>
+  </div>
+</div>
