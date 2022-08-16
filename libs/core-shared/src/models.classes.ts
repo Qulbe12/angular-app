@@ -1,3 +1,4 @@
+import {IS_NOT_EMPTY, IsNotEmpty} from "class-validator";
 
 export class ForgetPassword {
 
@@ -23,6 +24,8 @@ export class RegisterModel {
 }
 
 export class LoginModel {
+  @IsNotEmpty()
   email = '';
+  @IsNotEmpty()
   password = '';
 }
