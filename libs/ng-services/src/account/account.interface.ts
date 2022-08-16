@@ -4,6 +4,6 @@ import { Observable } from "rxjs";
 export interface IAccountService {
   login(model: LoginModel): Observable<AuthUserDto> | Promise<AuthUserDto>
   register(model: RegisterModel): Observable<AuthUserDto> | Promise<AuthUserDto>
-  forgetPassword(model: ForgetPassword): Observable<AuthUserDto> | AuthUserDto
+  forgetPassword(model: ForgetPassword): Observable<AuthUserDto> | Promise<AuthUserDto>
   resetPassword(model: ResetPassword): Observable<string> | string
 }
