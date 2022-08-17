@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {AuthUserDto, ForgetPassword, LoginModel, RegisterModel, ResetPassword} from "@trucks/core-shared";
+import {AuthUserDto, ForgetPassword, LoginModel, Otp, RegisterModel, ResetPassword, ResetStatus} from "@trucks/core-shared";
 import {Observable} from "rxjs";
 import {IAccountService} from "./account.interface";
 
@@ -34,9 +34,9 @@ export class AccountMockService implements IAccountService {
   }
 
 
-  forgetPassword(model: ForgetPassword): Observable<string> {
-    const observable = new Observable<string>(observer => {
-      const dto = '12345798';
+  forgetPassword(model: ForgetPassword): Observable<Otp> {
+    const observable = new Observable<Otp>(observer => {
+      const dto = {otp : "123456"};
       observer.next(dto)
     });
     return observable;
@@ -63,9 +63,9 @@ export class AccountMockService implements IAccountService {
   //   return observable;
   // }
 
-  resetPassword(model: ResetPassword): Observable<string> {
-    const observable = new Observable<string>(observer => {
-      const dto = '12345798';
+  resetPassword(model: ResetPassword): Observable<ResetStatus> {
+    const observable = new Observable<ResetStatus>(observer => {
+      const dto = {status:"success"};
       observer.next(dto)
     });
 

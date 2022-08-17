@@ -27,6 +27,8 @@ export class ResetPassword {
   @IsNotEmpty()
   @MinLength(6)
   confirmPassword = ''
+
+  otp = '2234'
 }
 
 export class RegisterModel {

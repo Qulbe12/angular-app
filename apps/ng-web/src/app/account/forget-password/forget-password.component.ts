@@ -24,7 +24,7 @@ export class ForgetPasswordComponent extends NgBaseComponent {
       this.authService.forgetPassword(this.model).subscribe(
         data => {
           localStorage.setItem('user', JSON.stringify(data));
-          this.router.navigate(['/login']);
+          this.router.navigate(['/reset-password']);
         },
         (ex) => this.handleServerErrors(ex)
       ).add(() => this.busy = false)
