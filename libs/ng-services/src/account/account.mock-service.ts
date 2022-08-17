@@ -33,21 +33,14 @@ export class AccountMockService implements IAccountService {
 
   }
 
-  //
-  // forgetPassword(model: ForgetPassword): Observable<AuthUserDto> {
-  //   const observable = new Observable<AuthUserDto>(observer => {
-  //     const dto: AuthUserDto = {
-  //       name: 'ahsan',
-  //       email: model.email,
-  //       terms: true,
-  //       token: '123',
-  //       expiry: '12:22',
-  //       role: 'Admin'
-  //     }
-  //     observer.next(dto)
-  //   });
-  //   return observable;
-  // }
+
+  forgetPassword(model: ForgetPassword): Observable<string> {
+    const observable = new Observable<string>(observer => {
+      const dto = '12345798';
+      observer.next(dto)
+    });
+    return observable;
+  }
   //
   //
   //
@@ -69,14 +62,14 @@ export class AccountMockService implements IAccountService {
   //   });
   //   return observable;
   // }
-  //
-  // resetPassword(model: ResetPassword): Observable<string> {
-  //   const observable = new Observable<string>(observer => {
-  //     const dto = '12345798';
-  //     observer.next(dto)
-  //   });
-  //
-  //   return observable;
-  // }
+
+  resetPassword(model: ResetPassword): Observable<string> {
+    const observable = new Observable<string>(observer => {
+      const dto = '12345798';
+      observer.next(dto)
+    });
+
+    return observable;
+  }
 
 }

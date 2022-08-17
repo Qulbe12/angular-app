@@ -21,15 +21,18 @@ export class RegisterComponent extends NgBaseComponent {
   dto: AuthUserDto | null = null;
 
   submit() {
+    this.busy = true
     this.validate(this.model, () => {
-      this.busy = true
-      this.authService.register(this.model).subscribe((data) => {
-        this.busy = false
-        console.log(data)
-        //  do with data what you need to
-      })
-
+      this.authService.register(this.model).subscribe(
+        data => {
+          localStorage.setItem('user', JSON.stringify(data));
+          this.router.navigate(['/dashboard']);
+        },
+        (ex) => this.handleServerErrors(ex)
+      ).add(() => this.busy = false)
     })
 
+
   }
-}
+
+  }

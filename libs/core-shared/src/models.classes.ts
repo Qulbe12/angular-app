@@ -1,13 +1,11 @@
 import { IS_NOT_EMPTY, IsEmail, IsNotEmpty, MaxLength, MinLength } from "class-validator";
-import { ApiProperty } from '@nestjs/swagger';
 
 export class LoginModel {
-  @ApiProperty()
+
   @IsNotEmpty()
   @IsEmail()
   email = '';
 
-  @ApiProperty()
   @IsNotEmpty()
   @MinLength(6)
   password = '';
@@ -17,31 +15,32 @@ export class LoginModel {
 
 
 export class ForgetPassword {
-
-  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
   email = '';
 }
 
 export class ResetPassword {
-  @ApiProperty()
+  @IsNotEmpty()
+  @MinLength(6)
   password = '';
-  @ApiProperty()
+  @IsNotEmpty()
+  @MinLength(6)
   confirmPassword = ''
 }
 
 export class RegisterModel {
 
-  @ApiProperty()
+  @IsNotEmpty()
   name = ''
 
-  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
   email = '';
 
-  @ApiProperty()
+
   password = '';
 
-  @ApiProperty()
-  confirmPassword = '';
 
   // @ApiProperty()
   terms = false
