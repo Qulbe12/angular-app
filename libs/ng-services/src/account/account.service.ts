@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core'
-import { AuthUserDto, ForgetPassword, LoginModel, RegisterModel, ResetPassword } from '@trucks/core-shared';
+import {AuthUserDto, ForgetPassword, LoginModel, Otp, RegisterModel, ResetPassword, ResetStatus} from '@trucks/core-shared';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { IAccountService } from './account.interface';
@@ -14,9 +14,9 @@ export class AccountService implements IAccountService {
         return this.http.post<AuthUserDto>('http://localhost:3333/api/account/login', model)
     }
 
-    forgetPassword(model: ForgetPassword): Observable<string> {
+    forgetPassword(model: ForgetPassword): Observable<Otp> {
 
-        return this.http.post<string>('http://localhost:3333/api/account/forget', model)
+        return this.http.post<Otp>('http://localhost:3333/api/account/forget-password', model)
 
     }
     //
@@ -26,8 +26,8 @@ export class AccountService implements IAccountService {
 
     }
 
-  resetPassword(model: ResetPassword): Observable<string> {
-    return this.http.post<string>('http://localhost:3333/api/account/register', model)
+  resetPassword(model: ResetPassword): Observable<ResetStatus> {
+    return this.http.post<ResetStatus>('http://localhost:3333/api/account/reset-password', model)
   }
 
 

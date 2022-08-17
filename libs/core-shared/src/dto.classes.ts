@@ -4,3 +4,11 @@ export class AuthUserDto {
   role = ''
   token = ''
 }
+
+export class Otp {
+  otp = ""
+}
+
+export class ResetStatus {
+  status = ""
+}
