@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword } from '@trucks/core-shared';
+import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword, Otp, ResetStatus } from '@trucks/core-shared';
 '@trucks/core-shared';
 import { IAccountService } from '@trucks/ng-services';
 import { Observable } from 'rxjs';
@@ -26,6 +26,8 @@ export class AccountController implements IAccountService {
 
     @Post('register')
     async register(@Body() model: RegisterModel): Promise<AuthUserDto> {
+
+
 
         const isEmailNotAvailable = await this.userRepo.findOneBy({ email: model.email })
         if (isEmailNotAvailable) {
@@ -58,27 +60,39 @@ export class AccountController implements IAccountService {
             throw new HttpException('invalid email or password', HttpStatus.UNAUTHORIZED)
         }
     }
-    @Post('forget')
-    async forgetPassword(@Body() model: ForgetPassword) {
+    @Post('forget-password')
+    async forgetPassword(@Body() model: ForgetPassword): Promise<Otp> {
 
         const found = await this.userRepo.findOneBy({ email: model.email })
         if (!found) {
             throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
         }
         else {
-            const payload = { id: found.id, email: found.email, }
-            const accessToken = this.jwtService.sign(payload)
-            this.sendResetLink(found.email)
+            // const payload = { id: found.id, email: found.email, }
+            // const accessToken = this.jwtService.sign(payload)
+            // this.sendResetLink(found.email)
+            const otp = "2234"
+            found.otp = otp
+            await this.userRepo.save(found)
             return {
-                email: found.email,
-                token: accessToken
+                otp: "2234"
             }
         }
     }
 
+    @Post('reset-password')
+    async resetPassword(@Body() model: ResetPassword): Promise<ResetStatus> {
 
-    resetPassword(model: ResetPassword): string | Observable<string> {
-        throw new Error('Method not implemented.');
+        const foundUser = await this.userRepo.findOneBy({ otp: model.otp })
+        if (!foundUser) {
+            throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
+        } else {
+            foundUser.password = model.password
+            await this.userRepo.save(foundUser)
+            return {
+                status: "password successfully changed please login again with new password"
+            }
+        }
     }
 
 

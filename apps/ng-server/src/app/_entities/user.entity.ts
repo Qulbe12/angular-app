@@ -15,5 +15,6 @@ export class User {
     role: string
     @Column()
     terms: boolean
-
+    @Column()
+    otp: string
 }
