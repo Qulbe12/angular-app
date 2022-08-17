@@ -1,56 +1,3 @@
-<!--<div class="grid grid-cols lg:grid-cols-2">-->
-<!--  <div class="relative flex w-1/2 h-screen justify-center mx-auto">-->
-<!--    <div class="flex flex-col w-96 mt-40">-->
-
-<!--      <h1 class="font-bold text-slate-800 text-4xl">Welcome back! ✨</h1>-->
-<!--      <div class="flex flex-col gap-1 mt-6 relative">-->
-
-<!--        <div class="bg-red-100 p-3 rounded " *ngIf="errors.length > 0" >-->
-<!--          <div *ngFor="let error of errors">-->
-<!--            <span class="text-sm capitalize" >{{error}}</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <x-input-email [(ngModel)]="model.email"  name="model.email" label="Email"></x-input-email>-->
-
-<!--        <x-input-password [(ngModel)]="model.password" name="model.password"label="Password"></x-input-password>-->
-
-<!--        <div class="mt-8 flex">-->
-<!--          <a-->
-<!--            class="mt-2 absolute text-lg underline decoration-1 hover:no-underline"-->
-<!--            href="forgotpassword"-->
-<!--            >Forgot Password?</a-->
-<!--          >-->
-<!--          <a (click)="submit()"-->
-<!--            class="absolute flex ml-72 text-lg bg-indigo-500 text-white font-bold h-12 w-24 items-center pl-4 rounded-lg hover:bg-indigo-600"-->
-<!--            href="javascript:void(0)"-->
-<!--            >Sign in</a-->
-<!--          >-->
-<!--          <div class="mt-20">-->
-<!--            <hr class="w-96 bg-slate-400" />-->
-<!--            <p class="mt-5 text-lg">-->
-<!--              Don't you have an account?-->
-<!--              <span><a href="#signup" class="text-indigo-500">Sign up</a></span>-->
-<!--            </p>-->
-<!--            <p></p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="bg-gray-100 hidden lg:block bg-gray-300">-->
-<!--    <div class="absolute top-1/3 -left-10 relative">-->
-<!--      <img-->
-<!--        class="w-52 h-52 hidden lg:block"-->
-<!--        src="https://preview.cruip.com/mosaic/images/auth-decoration.png"-->
-<!--        alt=""-->
-<!--      />-->
-<!--    </div>-->
-
-<!--    <div class="mx-auto w-1/2 mt-10">-->
-<!--      <img src="../assets/svgs/truck.svg" alt="truck" />-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 
 <x-page-center>
   <x-card>
@@ -68,7 +15,11 @@
                         placeholder="secret"></x-input-password>
       <div><a class="text-sm " routerLink="">Forgot Password?</a></div>
 
-
+      <div *ngIf="serrors" class="bg-red-50 border border-red-500 p-2">
+        <ol>
+          <li class="text-xs text-red-500" *ngFor="let error of serrors">{{error}}</li>
+        </ol>
+      </div>
       <x-form-footer>
         <x-input-check [(ngModel)]="model.rememberMe">Remember Me</x-input-check>
         <x-button [busy]="busy" (onClick)="submit()">Continue</x-button>

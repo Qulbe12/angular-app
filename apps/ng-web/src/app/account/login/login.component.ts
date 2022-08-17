@@ -21,14 +21,23 @@ export class LoginComponent extends NgBaseComponent {
 
   submit() {
     this.busy = true
-    this.validate(this.model, () => {
+
+
+    this.validate(this.model, () =>
+      //call service
       this.authService.login(this.model).subscribe(
+        //success
         data => {
           localStorage.setItem('user', JSON.stringify(data));
           this.router.navigate(['/dashboard']);
-        }
-      ).add(() => this.busy = false)
-    })
+        },
+        //error
+        ex => this.handleServerErrors(ex)
+      )
+        //finally
+        .add(() => this.busy = false)
+    )
+
   }
 
 

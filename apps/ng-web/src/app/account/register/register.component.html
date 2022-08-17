@@ -5,17 +5,19 @@
         Provide your personal information to create new account. If you already have an account then <a
         routerLink="/login">Login</a> to access.
       </x-form-header>
-      <x-input-text [(ngModel)]="model.name" label="Full Name"></x-input-text>
-      <x-input-email [(ngModel)]="model.email" label="Email Address"></x-input-email>
-      <x-input-password [(ngModel)]="model.password"  label="Password"></x-input-password>
-      <x-input-password [(ngModel)]="model.confirmPassword"  label="Confirm Password"></x-input-password>
+      <x-input-text [(ngModel)]="model.name" [errors]="errors.name" label="Full Name"></x-input-text>
+      <x-input-email [(ngModel)]="model.email" [errors]="errors.email" label="Email Address"></x-input-email>
+      <x-input-password [(ngModel)]="model.password" [errors]="errors.password"  label="Password"></x-input-password>
+
       <div class="py-2">
         <x-input-check [(ngModel)]="model.terms" >I agree with all <a href="">terms and conditions</a>.</x-input-check>
       </div>
 
+
+
       <x-form-footer>
         <div></div>
-        <x-button (onClick)="submit()" >Continue</x-button>
+        <x-button [busy]="busy" (onClick)="submit()" >Continue</x-button>
       </x-form-footer>
 
     </x-form>

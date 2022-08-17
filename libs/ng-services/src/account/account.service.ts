@@ -14,17 +14,23 @@ export class AccountService implements IAccountService {
         return this.http.post<AuthUserDto>('http://localhost:3333/api/account/login', model)
     }
 
-    // forgetPassword(model: ForgetPassword): Observable<AuthUserDto> {
-    //
-    //     return this.http.post<AuthUserDto>('http://localhost:3333/api/account/forget', model)
-    //
-    // }
+    forgetPassword(model: ForgetPassword): Observable<string> {
+
+        return this.http.post<string>('http://localhost:3333/api/account/forget', model)
+
+    }
     //
     register(model: RegisterModel): Observable<AuthUserDto> {
 
         return this.http.post<AuthUserDto>('http://localhost:3333/api/account/register', model)
 
     }
+
+  resetPassword(model: ResetPassword): Observable<string> {
+    return this.http.post<string>('http://localhost:3333/api/account/register', model)
+  }
+
+
     //
 
     //
