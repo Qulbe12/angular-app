@@ -4,6 +4,8 @@ import { AccountModule } from './account/account.module';
 import { User } from './_entities/user.entity';
 import { JwtStrategy } from './_strategies/jwt.strategy';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { OTP } from './_entities/otp.entity';
+
 
 
 const DBConfig = TypeOrmModule.forRoot({
@@ -13,7 +15,7 @@ const DBConfig = TypeOrmModule.forRoot({
   username: 'root',
   password: '',
   database: 'truck-app',
-  entities: [User],
+  entities: [User, OTP],
   synchronize: true,
 })
 
