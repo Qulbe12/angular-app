@@ -8,6 +8,7 @@ import {AdminModule} from "./admin/admin.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { PartialsModule } from './partials/partials.module';
 import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-configurator.interceptor";
+import { CarrierModule } from './carrier/carrier.module';
 
 
 
@@ -17,7 +18,7 @@ import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule, HttpClientModule, PartialsModule
+    AdminModule, HttpClientModule, PartialsModule, CarrierModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenConfiguratorInterceptor, multi: true }],

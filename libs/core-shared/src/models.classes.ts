@@ -14,21 +14,22 @@ export class LoginModel {
 }
 
 
-export class ForgetPassword {
+export class ForgetPasswordModel {
   @IsNotEmpty()
   @IsEmail()
   email = '';
 }
 
-export class ResetPassword {
+export class ResetPasswordModel {
   @IsNotEmpty()
   @MinLength(6)
   password = '';
   @IsNotEmpty()
-  @MinLength(6)
-  confirmPassword = ''
+  otp = ''
 
-  otp = '2234'
+  @IsNotEmpty()
+  @IsEmail()
+  email = ""
 }
 
 export class RegisterModel {
@@ -47,4 +48,58 @@ export class RegisterModel {
   // @ApiProperty()
   terms = false
 }
+
+export class Roles {
+  carrier = ""
+  broker = ""
+}
+
+export class SelectRoleModel {
+  @IsNotEmpty()
+  role  = ''
+}
+
+export class CarrierProfileModel {
+
+  @IsNotEmpty()
+  licenceType = ''
+  stateOperational = '';
+  @IsNotEmpty()
+  companyName = ""
+  @IsNotEmpty()
+  name= ""
+  @IsNotEmpty()
+  title = ""
+  @IsNotEmpty()
+  address = ""
+  @IsNotEmpty()
+  @IsEmail()
+  companyEmail = ""
+  @IsNotEmpty()
+  companyCellNum = ""
+  @IsNotEmpty()
+  work= ""
+  goalDesc = ""
+  pic = ""
+}
+
+export class vehicleRegistration {
+
+  @IsNotEmpty()
+  vehicleType = ""
+  @IsNotEmpty()
+  sleeper = ""
+  @IsNotEmpty()
+  daycab = ""
+  @IsNotEmpty()
+  year = ""
+  @IsNotEmpty()
+  vin = ""
+  @IsNotEmpty()
+  truckType = ""
+  @IsNotEmpty()
+  trailerType = ""
+}
+
+
 

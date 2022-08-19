@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword } from '@trucks/core-shared';
+import { LoginModel, RegisterModel, ForgetPasswordModel, AuthUserDto, ResetPasswordModel } from '@trucks/core-shared';
 '@trucks/core-shared';
 import { IAccountService } from '@trucks/ng-services';
 import { Observable } from 'rxjs';
@@ -59,7 +59,7 @@ export class AccountController implements IAccountService {
         }
     }
     @Post('forget')
-    async forgetPassword(@Body() model: ForgetPassword) {
+    async forgetPassword(@Body() model: ForgetPasswordModel) {
 
         const found = await this.userRepo.findOneBy({ email: model.email })
         if (!found) {
@@ -77,7 +77,7 @@ export class AccountController implements IAccountService {
     }
 
 
-    resetPassword(model: ResetPassword): string | Observable<string> {
+    resetPassword(model: ResetPasswordModel): string | Observable<string> {
         throw new Error('Method not implemented.');
     }
 

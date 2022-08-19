@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'x-page-center',
@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-center.component.css'],
 })
 export class PageCenterComponent implements OnInit {
+
+  @Input()
+  title : string | null = null
+
+  @Input()
+  help:string | null = null
+
   constructor() {}
 
   ngOnInit(): void {}

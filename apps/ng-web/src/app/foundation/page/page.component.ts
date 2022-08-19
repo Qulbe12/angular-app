@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class PageComponent implements OnInit {
 
   @Input()
-  heading = 'Page'
+  heading = ''
 
   constructor() {}
 

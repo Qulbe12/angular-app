@@ -1,5 +1,14 @@
 import {Injectable} from '@angular/core'
-import {AuthUserDto, ForgetPassword, LoginModel, Otp, RegisterModel, ResetPassword, ResetStatus} from "@trucks/core-shared";
+import {
+  AuthUserDto,
+  ForgetPasswordModel,
+  LoginModel,
+  Otp,
+  RegisterModel,
+  ResetPasswordModel,
+  Roles,
+  SelectRoleModel
+} from "@trucks/core-shared";
 import {Observable} from "rxjs";
 import {IAccountService} from "./account.interface";
 
@@ -34,9 +43,9 @@ export class AccountMockService implements IAccountService {
   }
 
 
-  forgetPassword(model: ForgetPassword): Observable<Otp> {
-    const observable = new Observable<Otp>(observer => {
-      const dto = {otp : "123456"};
+  forgetPassword(model: ForgetPasswordModel): Observable<boolean> {
+    const observable = new Observable<boolean>(observer => {
+      const dto = true;
       observer.next(dto)
     });
     return observable;
@@ -63,13 +72,28 @@ export class AccountMockService implements IAccountService {
   //   return observable;
   // }
 
-  resetPassword(model: ResetPassword): Observable<ResetStatus> {
-    const observable = new Observable<ResetStatus>(observer => {
-      const dto = {status:"success"};
+  resetPassword(model: ResetPasswordModel): Observable<boolean> {
+    const observable = new Observable<boolean>(observer => {
+      const dto = true;
       observer.next(dto)
     });
 
     return observable;
   }
 
+  assignRole(model: SelectRoleModel): Observable<AuthUserDto> {
+
+    return new Observable<AuthUserDto>(observer => {
+      const dto: AuthUserDto = {
+        name: 'Qulbe Hussain',
+        email: "hussain@gmail.com",
+        token: '123',
+        role: 'Admin'
+      }
+      observer.next(dto)
+    });
+
+  }
+
 }
+
