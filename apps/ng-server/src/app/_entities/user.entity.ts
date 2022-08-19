@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { OTP } from "./otp.entity";
 
 @Entity()
 export class User {
@@ -15,6 +16,9 @@ export class User {
     role: string
     @Column()
     terms: boolean
-    @Column()
-    otp: string
+
+    @OneToOne(() => OTP, (otp) => otp.user)
+    @JoinTable()
+    otp: Promise<OTP>
+
 }
