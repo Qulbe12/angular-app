@@ -1,0 +1,6 @@
+<x-page-center title="Select your role" help="You can select your role from the given options.">
+<x-form>
+  <x-input-radio [options]="options" [(ngModel)]="model.role" [errors]="errors.role"></x-input-radio>
+  <x-button [busy]="busy" (onClick)="submit()">Continue</x-button>
+</x-form>
+</x-page-center>

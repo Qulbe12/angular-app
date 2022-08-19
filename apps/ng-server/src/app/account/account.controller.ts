@@ -1,6 +1,8 @@
 import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword, Otp, ResetStatus } from '@trucks/core-shared';
+
 '@trucks/core-shared';
 import { IAccountService } from '@trucks/ng-services';
 import { Observable } from 'rxjs';
@@ -75,6 +77,7 @@ export class AccountController implements IAccountService {
     }
 
 
+
     // Forgot Password
     @Post('forget-password')
     async forgetPassword(@Body() model: ForgetPassword): Promise<void> {
@@ -95,6 +98,7 @@ export class AccountController implements IAccountService {
         newOtp.createdAt.setMinutes(newOtp.createdAt.getMinutes() + 30); // timestamp
         newOtp.createdAt = new Date(newOtp.createdAt)
         await this.otpRepo.save(newOtp)
+
     }
 
 

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractAccountService } from "@trucks/ng-services";
 import { Router } from "@angular/router";
-import { AuthUserDto, ForgetPassword } from "@trucks/core-shared";
-import { AccountMockService } from "../../../../../../libs/ng-services/src/account/account.mock-service";
-import { NgBaseComponent } from "../../foundation/ng.base";
+
+import { AuthUserDto, ForgetPasswordModel } from "@trucks/core-shared";
+import {AccountMockService} from "../../../../../../libs/ng-services/src/account/account.mock-service";
+import {NgBaseComponent} from "../../foundation/ng.base";
+
+
 
 @Component({
   selector: 'x-forget-password',
@@ -16,7 +19,7 @@ export class ForgetPasswordComponent extends NgBaseComponent {
   }
 
 
-  model = new ForgetPassword()
+  model = new ForgetPasswordModel()
   dto: AuthUserDto | null = null;
 
   submit() {
@@ -25,12 +28,12 @@ export class ForgetPasswordComponent extends NgBaseComponent {
       this.authService.forgetPassword(this.model).subscribe(
         data => {
           localStorage.setItem('user', JSON.stringify(data));
-          this.router.navigate(['/reset-password']);
+          this.router.navigate(['/reset-password' , this.model.email]);
+          console.log(data)
         },
         (ex) => this.handleServerErrors(ex)
       ).add(() => this.busy = false)
     })
-
-
   }
+
 }

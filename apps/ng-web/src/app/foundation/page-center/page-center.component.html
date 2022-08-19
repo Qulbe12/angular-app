@@ -1,3 +1,10 @@
 <div>
+   <section>
+     <header *ngIf="title" class="py-4 pt-8 text-center">
+       <h5>{{title}}</h5>
+       <small>{{help}}</small>
+     </header>
+   </section>
   <ng-content></ng-content>
+  <footer></footer>
 </div>

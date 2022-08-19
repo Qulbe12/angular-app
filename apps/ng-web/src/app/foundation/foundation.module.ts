@@ -24,6 +24,10 @@ import { FormComponent } from './form/form.component';
 import { FormFooterComponent } from './form-footer/form-footer.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { InputTextAreaComponent } from './input-text-area/input-text-area.component';
+import { InputImageComponent } from './input-image/input-image.component';
+import { ButtonWhiteComponent } from './button-white/button-white.component';
+import { InputRadioComponent } from './input-radio/input-radio.component';
+import { InputNumberComponent } from './input-number/input-number.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { InputTextAreaComponent } from './input-text-area/input-text-area.compon
     FormFooterComponent,
     InputTextComponent,
     InputTextAreaComponent,
+    InputImageComponent,
+    ButtonWhiteComponent,
+    InputRadioComponent,
+    InputNumberComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -73,6 +81,10 @@ import { InputTextAreaComponent } from './input-text-area/input-text-area.compon
     FormFooterComponent,
     InputTextComponent,
     InputTextAreaComponent,
+    InputImageComponent,
+    ButtonWhiteComponent,
+    InputRadioComponent,
+    InputNumberComponent
   ],
   providers: [CurrencyPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

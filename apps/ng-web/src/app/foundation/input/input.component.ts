@@ -15,5 +15,11 @@ export class InputComponent<T> extends ControlBaseComponent<T>{
   label = "Input Label"
 
   @Input()
+  description = "description"
+
+  @Input()
+  role = ""
+
+  @Input()
   errors: string[] | null = null;
 }
