@@ -18,7 +18,7 @@ import { IAccountService } from './account.interface';
 import { NotImplementedException } from '@nestjs/common';
 @Injectable()
 export class AccountService implements IAccountService {
-  constructor(private http: HttpClient) {}
+
 
 
 
@@ -28,22 +28,9 @@ export class AccountService implements IAccountService {
     return this.http.post<AuthUserDto>('http://localhost:3333/api/account/login', model)
   }
 
-  forgetPassword(model: ForgetPassword): Observable<void> {
 
-    return this.http.post<void>('http://localhost:3333/api/account/forget-password', model)
 
-  }
-  //
-  register(model: RegisterModel): Observable<AuthUserDto> {
 
-    return this.http.post<AuthUserDto>('http://localhost:3333/api/account/register', model)
-
-  }
-
-  resetPassword(model: ResetPassword): Observable<ResetStatus> {
-    return this.http.post<ResetStatus>('http://localhost:3333/api/account/reset-password', model)
-
-  }
 
   forgetPassword(model: ForgetPasswordModel): Observable<boolean> {
     return this.http.post<boolean>(

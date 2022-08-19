@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword, Otp, ResetStatus } from '@trucks/core-shared';
+import { LoginModel, RegisterModel, AuthUserDto, Otp, ResetStatus, ForgetPasswordModel, ResetPasswordModel, SelectRoleModel } from '@trucks/core-shared';
 
 '@trucks/core-shared';
 import { IAccountService } from '@trucks/ng-services';
@@ -27,6 +27,9 @@ export class AccountController implements IAccountService {
     ) {
         // userRepo.clear()
         // otpRepo.clear()
+    }
+    assignRole(model: SelectRoleModel): Promise<AuthUserDto> | Observable<AuthUserDto> {
+        throw new Error('Method not implemented.');
     }
 
 
@@ -80,31 +83,28 @@ export class AccountController implements IAccountService {
 
     // Forgot Password
     @Post('forget-password')
-    async forgetPassword(@Body() model: ForgetPassword): Promise<void> {
+    async forgetPassword(@Body() model: ForgetPasswordModel): Promise<boolean> {
 
         const foundUser = await this.userRepo.findOneBy({ email: model.email })
         if (!foundUser) {
             throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
         }
 
-
-        // const payload = { id: found.id, email: found.email, }
-        // const accessToken = this.jwtService.sign(payload)
-        // this.sendResetLink(found.email)
         const newOtp = new OTP
         newOtp.userOtp = Math.floor(100000 + Math.random() * 900000).toString()
         newOtp.user = foundUser
         newOtp.createdAt = new Date()
         newOtp.createdAt.setMinutes(newOtp.createdAt.getMinutes() + 30); // timestamp
         newOtp.createdAt = new Date(newOtp.createdAt)
+        // this.sendResetLink(found.email)
         await this.otpRepo.save(newOtp)
-
+        throw new HttpException('success', HttpStatus.OK)
     }
 
 
     // Reset Password
     @Post('reset-password')
-    async resetPassword(@Body() model: ResetPassword): Promise<ResetStatus> {
+    async resetPassword(@Body() model: ResetPasswordModel): Promise<boolean> {
         const date = new Date()
         const foundOtp = await this.otpRepo.findOneBy({ userOtp: model.otp })
         if (!foundOtp || foundOtp.createdAt < date) {
