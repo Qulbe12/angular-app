@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { LoginModel, RegisterModel, AuthUserDto, Otp, ResetStatus, ForgetPasswordModel, ResetPasswordModel, SelectRoleModel } from '@trucks/core-shared';
@@ -13,6 +13,7 @@ import { MailerService } from '@nestjs-modules/mailer'
 import { ApiBearerAuth } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
 import { OTP } from '../_entities/otp.entity';
+import { JwtAuthGuard } from '../_strategies/jwt.strategy';
 
 @ApiBearerAuth()
 @Controller('account')
@@ -28,14 +29,30 @@ export class AccountController implements IAccountService {
         // userRepo.clear()
         // otpRepo.clear()
     }
-    assignRole(model: SelectRoleModel): Promise<AuthUserDto> | Observable<AuthUserDto> {
-        throw new Error('Method not implemented.');
+
+    @UseGuards(JwtAuthGuard)
+    @Post('assign-role')
+    async assignRole(@Body() model: SelectRoleModel, @Request() req): Promise<AuthUserDto> {
+
+        const authUser = req.user as User
+        authUser.role = model.role
+        const payload = { id: authUser.id, email: authUser.email, }
+        const accessToken = this.jwtService.sign(payload)
+        await this.userRepo.save(authUser)
+        return {
+            name: authUser.name,
+            email: authUser.email,
+            token: accessToken,
+            role: authUser.role
+        }
+
+
     }
 
 
 
 
-    // Register
+
     @Post('register')
     async register(@Body() model: RegisterModel): Promise<AuthUserDto> {
 
@@ -60,7 +77,7 @@ export class AccountController implements IAccountService {
     }
 
 
-    // Login
+
     @Post('login')
     async login(@Body() model: LoginModel): Promise<AuthUserDto> {
         const foundUser = await this.userRepo.findOneBy({ email: model.email })
@@ -81,7 +98,7 @@ export class AccountController implements IAccountService {
 
 
 
-    // Forgot Password
+
     @Post('forget-password')
     async forgetPassword(@Body() model: ForgetPasswordModel): Promise<boolean> {
 
@@ -89,24 +106,35 @@ export class AccountController implements IAccountService {
         if (!foundUser) {
             throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
         }
-
+        const deleteExistingOtp = await foundUser.otp
+        if (deleteExistingOtp) {
+            await this.otpRepo.delete(deleteExistingOtp.id)
+        }
         const newOtp = new OTP
         newOtp.userOtp = Math.floor(100000 + Math.random() * 900000).toString()
+        // console.log(newOtp.userOtp)
+        newOtp.userOtp = bcrypt.hashSync(newOtp.userOtp, 10)
         newOtp.user = foundUser
         newOtp.createdAt = new Date()
         newOtp.createdAt.setMinutes(newOtp.createdAt.getMinutes() + 30); // timestamp
         newOtp.createdAt = new Date(newOtp.createdAt)
+        // send otp to user email
         // this.sendResetLink(found.email)
         await this.otpRepo.save(newOtp)
         throw new HttpException('success', HttpStatus.OK)
     }
 
 
-    // Reset Password
+
     @Post('reset-password')
     async resetPassword(@Body() model: ResetPasswordModel): Promise<boolean> {
+
+        const user = await this.userRepo.findOneBy({ email: model.email })
+        if (!user) {
+            throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
+        }
         const date = new Date()
-        const foundOtp = await this.otpRepo.findOneBy({ userOtp: model.otp })
+        const foundOtp = await user.otp
         if (!foundOtp || foundOtp.createdAt < date) {
             throw new HttpException('invalid otp or expired ', HttpStatus.UNAUTHORIZED)
         }
@@ -115,6 +143,7 @@ export class AccountController implements IAccountService {
         await this.userRepo.save(foundOtp.user)
         await this.otpRepo.delete(foundOtp.id)
         throw new HttpException('success', HttpStatus.OK)
+
 
 
 

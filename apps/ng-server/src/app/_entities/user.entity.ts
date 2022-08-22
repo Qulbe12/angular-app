@@ -1,4 +1,5 @@
 import { Column, Entity, JoinTable, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Carrier } from "./carrier.entity";
 import { OTP } from "./otp.entity";
 
 @Entity()
@@ -21,4 +22,8 @@ export class User {
     @JoinTable()
     otp: Promise<OTP>
 
+
+    @OneToOne(() => Carrier, (carrier) => carrier.user)
+    @JoinTable()
+    carrier: Promise<Carrier>
 }

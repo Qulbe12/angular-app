@@ -5,6 +5,8 @@ import { User } from './_entities/user.entity';
 import { JwtStrategy } from './_strategies/jwt.strategy';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { OTP } from './_entities/otp.entity';
+import { CarrierModule } from './carrier/carrier.module';
+import { Carrier } from './_entities/carrier.entity';
 
 
 
@@ -15,7 +17,7 @@ const DBConfig = TypeOrmModule.forRoot({
   username: 'root',
   password: '',
   database: 'truck-app',
-  entities: [User, OTP],
+  entities: [User, OTP, Carrier],
   synchronize: true,
 })
 
@@ -33,7 +35,7 @@ const mailerConfig = MailerModule.forRoot({
 })
 
 @Module({
-  imports: [DBConfig, AccountModule, mailerConfig],
+  imports: [DBConfig, mailerConfig, AccountModule, CarrierModule],
   controllers: [],
   providers: [JwtStrategy],
 })
