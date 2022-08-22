@@ -8,9 +8,9 @@ export class Carrier {
     @PrimaryGeneratedColumn()
     id: number
     @Column()
-    licenceType: string
+    licenseType: string
     @Column()
-    licenceNo: string
+    licenseNo: string
     @Column()
     companyName: string
     @Column()
@@ -20,11 +20,11 @@ export class Carrier {
     @Column()
     paymentOption: string
     @Column()
-    companyEmail: string
+    email: string
     @Column()
     address: string
     @Column()
-    companyCellNo: string
+    cellNo: string
     @Column()
     workNo: string
     @Column()
@@ -39,8 +39,7 @@ export class Carrier {
     drivingLicBackFile: string
     @Column()
     w9FormFile: string
-    @Column()
-    goalDesc: string
+
 
     @OneToOne(() => User, (user) => user.carrier, { cascade: true, eager: true })
     @JoinColumn()

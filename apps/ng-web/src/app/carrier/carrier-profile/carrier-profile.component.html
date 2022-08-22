@@ -1,50 +1,90 @@
-<x-page heading="Carrier Registration">
-<x-page-center>
-  <x-card>
+<!--<x-page heading="Carrier Registration">-->
+<!--<x-page-center>-->
+<!--  <x-card>-->
 
-    <x-form>
+<!--    <x-form>-->
 
-      <x-form-header title="Carrier Registration">
-        To start Business with us
-        first you have to create a porfile
-        and wait to approve
-      </x-form-header>
+<!--      <x-form-header title="Carrier Registration">-->
+<!--        To start Business with us-->
+<!--        first you have to create a porfile-->
+<!--        and wait to approve-->
+<!--      </x-form-header>-->
 
-      <x-input-text [(ngModel)]="model.licenceType" [errors]="errors.licenceType" label="Licence Type"
-                     placeholder="Licence Type"></x-input-text>
-      <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"
-                        placeholder="secret"></x-input-text>
-      <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"
-                    placeholder="Company Name"></x-input-text>
-      <x-input-text [(ngModel)]="model.name" [errors]="errors.name" label="Owner Name"
-                    placeholder="Owner's Name"></x-input-text>
-      <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"
-                    placeholder="Title"></x-input-text>
-      <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"
-                    placeholder="Address"></x-input-text>
-      <x-input-text [(ngModel)]="model.companyEmail" [errors]="errors.companyEmail" label="Company Email"
-                    placeholder="Company Email"></x-input-text>
-      <x-input-text [(ngModel)]="model.companyCellNum" [errors]="errors.companyCellNum" label="Company Cell Number"
-                    placeholder="Company Cell Number"></x-input-text>
-      <x-input-text [(ngModel)]="model.work" [errors]="errors.work" label="Work"
-                    placeholder="Work"></x-input-text>
-      <x-input-text [(ngModel)]="model.goalDesc" [errors]="errors.goalDesc" label="Goal Description (Optional)"
-                    placeholder="Goal Description"></x-input-text>
+<!--      <x-input-text [(ngModel)]="model.licenceType" [errors]="errors.licenceType" label="Licence Type"-->
+<!--                     placeholder="Licence Type"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.licenceNo" [errors]="errors.licenceNo" label="Licence Type"-->
+<!--                    placeholder="Licence Type"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"-->
+<!--                    placeholder="Company Name"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"-->
+<!--                    placeholder="Title"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"-->
+<!--                        placeholder="secret"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.paymentOption" [errors]="errors.paymentMethod" label="Title"-->
+<!--                    placeholder="Title"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.email" [errors]="errors.email" label="Company Email"-->
+<!--                    placeholder="Company Email"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"-->
+<!--                    placeholder="Address"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.cellNum" [errors]="errors.cellNum" label="Company Cell Number"-->
+<!--                    placeholder="Company Cell Number"></x-input-text>-->
+<!--      <x-input-text [(ngModel)]="model.workNo" [errors]="errors.workNo" label="Work"-->
+<!--                    placeholder="Work no"></x-input-text>-->
 
-      <div *ngIf="serrors" class="bg-red-50 border border-red-500 p-2">
-        <ol>
-          <li class="text-xs text-red-500" *ngFor="let error of serrors">{{error}}</li>
-        </ol>
-      </div>
-      <x-form-footer>
-        <div></div>
-        <x-button [busy]="busy" (onClick)="submit()">Continue</x-button>
-      </x-form-footer>
+<!--      <div *ngIf="serrors" class="bg-red-50 border border-red-500 p-2">-->
+<!--        <ol>-->
+<!--          <li class="text-xs text-red-500" *ngFor="let error of serrors">{{error}}</li>-->
+<!--        </ol>-->
+<!--      </div>-->
+<!--      <x-form-footer>-->
+<!--        <div></div>-->
+<!--        <x-button [busy]="busy" (onClick)="submit()">Continue</x-button>-->
+<!--      </x-form-footer>-->
 
-    </x-form>
+<!--    </x-form>-->
 
-  </x-card>
+<!--  </x-card>-->
 
 
+<!--</x-page-center>-->
+<!--</x-page>-->
+
+<x-page-center title="Select your role" help="You can select your role from the given options.">
+  <x-form>
+    <x-input-text [(ngModel)]="model.licenseType" [errors]="errors.licenceType" label="Licence Type"
+                   placeholder="Licence Type"></x-input-text>
+            <x-input-text [(ngModel)]="model.licenseNo" [errors]="errors.licenceNo" label="Licence Type"
+                          placeholder="Licence Type"></x-input-text>
+            <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"
+                          placeholder="Company Name"></x-input-text>
+            <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"
+                         placeholder="Title"></x-input-text>
+            <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"
+                              placeholder="secret"></x-input-text>
+            <x-input-text [(ngModel)]="model.paymentOption" [errors]="errors.paymentMethod" label="Payment Option"
+                          placeholder="Payment Option"></x-input-text>
+            <x-input-text [(ngModel)]="model.email" [errors]="errors.email" label="Company Email"
+                          placeholder="Company Email"></x-input-text>
+            <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"
+                          placeholder="Address"></x-input-text>
+            <x-input-text [(ngModel)]="model.cellNo" [errors]="errors.cellNum" label="Company Cell Number"
+                          placeholder="Company Cell Number"></x-input-text>
+            <x-input-text [(ngModel)]="model.workNo" [errors]="errors.workNo" label="Work"
+                          placeholder="Work no"></x-input-text>
+            <x-input-text [(ngModel)]="model.insuranceCertFile" [errors]="errors.insuranceCertFile" label="Insurance Certificate"
+                          placeholder="Insurance Certificate"></x-input-text>
+            <x-input-text [(ngModel)]="model.insuranceAgent" [errors]="errors.insuranceAgent" label="Insurance Agent"
+                  placeholder="Insurnace Agent"></x-input-text>
+            <x-input-text [(ngModel)]="model.licenseLetterFile" [errors]="errors.licenceLetterFile" label="Licence Letter File"
+                  placeholder="Licence Letter File"></x-input-text>
+            <x-input-text [(ngModel)]="model.drivingLicFrontFile" [errors]="errors.drivingLicFrontFile" label="Licence Letter File"
+                  placeholder="Licence Letter File"></x-input-text>
+            <x-input-text [(ngModel)]="model.drivingLicBackFile" [errors]="errors.drivingLicBackFile" label="Licence Letter File"
+                  placeholder="Licence Letter File"></x-input-text>
+    <x-input-text [(ngModel)]="model.w9FormFile" [errors]="errors.w9FormFile" label="w9form"
+                  placeholder="w9form"></x-input-text>
+            <x-button (click)="submit()">Submit</x-button>
+  </x-form>
 </x-page-center>
-</x-page>
+
+

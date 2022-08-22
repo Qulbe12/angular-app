@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'register' , component: RegisterComponent},
   {path:'forget-password' , component: ForgetPasswordComponent},
   {path: 'reset-password/:email' , component: ResetPasswordComponent},
-  {path: 'roles' , component: RolesComponent},
+  {path: 'select-roles' , component: RolesComponent},
   {path: 'test-one' , component: TestOneComponent},
   {path: 'test-two/:email/:id' , component: TestTwoComponent},
   {path: 'password-updated' , component: PasswordUpdatedComponent}

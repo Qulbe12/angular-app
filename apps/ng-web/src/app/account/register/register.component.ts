@@ -26,7 +26,8 @@ export class RegisterComponent extends NgBaseComponent {
       this.authService.register(this.model).subscribe(
         data => {
           localStorage.setItem('user', JSON.stringify(data));
-          this.router.navigate(['/roles']);
+          this.router.navigate(['/select-roles']);
+          console.log(data)
         },
         (ex) => this.handleServerErrors(ex)
       ).add(() => this.busy = false)

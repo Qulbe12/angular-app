@@ -4,7 +4,7 @@ import {CarrierProfileComponent} from "./carrier-profile/carrier-profile.compone
 
 const routes: Routes = [
   {
-    path: "carrier-profile",
+    path: "setup-carrier-profile",
     component: CarrierProfileComponent
   }
 ];

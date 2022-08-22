@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { PartialsModule } from './partials/partials.module';
 import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-configurator.interceptor";
 import { CarrierModule } from './carrier/carrier.module';
+import { BrokerModule } from './broker/broker.module';
 
 
 
@@ -18,7 +19,7 @@ import { CarrierModule } from './carrier/carrier.module';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule, HttpClientModule, PartialsModule, CarrierModule
+    AdminModule, HttpClientModule, PartialsModule, CarrierModule, BrokerModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenConfiguratorInterceptor, multi: true }],
