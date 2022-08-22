@@ -17,8 +17,8 @@ export interface IAccountService {
   register(model: RegisterModel): Observable<AuthUserDto> | Promise<AuthUserDto>
 
   forgetPassword(model: ForgetPasswordModel): Observable<boolean> | Promise<boolean>
-  resetPassword(model: ResetPasswordModel): Observable<boolean> |  Promise<boolean>
-  assignRole(model: SelectRoleModel): Observable<AuthUserDto> |  Promise<AuthUserDto>
+  resetPassword(model: ResetPasswordModel): Observable<boolean> | Promise<boolean>
+  assignRole(model: SelectRoleModel, req: any): Observable<AuthUserDto> | Promise<AuthUserDto>
 
 }
 
