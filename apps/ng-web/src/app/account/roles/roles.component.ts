@@ -52,6 +52,7 @@ export class RolesComponent extends NgBaseComponent {
                 : '/setup-broker-profile';
             this.router.navigate([next]);
             console.log(data.role);
+
           },
           (ex) => this.handleServerErrors(ex)
         )
