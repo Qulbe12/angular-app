@@ -1,53 +1,72 @@
-<!--<x-page heading="Carrier Registration">-->
-<!--<x-page-center>-->
-<!--  <x-card>-->
 
-<!--    <x-form>-->
-
-<!--      <x-form-header title="Carrier Registration">-->
-<!--        To start Business with us-->
-<!--        first you have to create a porfile-->
-<!--        and wait to approve-->
-<!--      </x-form-header>-->
-
-<!--      <x-input-text [(ngModel)]="model.licenceType" [errors]="errors.licenceType" label="Licence Type"-->
-<!--                     placeholder="Licence Type"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.licenceNo" [errors]="errors.licenceNo" label="Licence Type"-->
-<!--                    placeholder="Licence Type"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"-->
-<!--                    placeholder="Company Name"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"-->
-<!--                    placeholder="Title"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"-->
-<!--                        placeholder="secret"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.paymentOption" [errors]="errors.paymentMethod" label="Title"-->
-<!--                    placeholder="Title"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.email" [errors]="errors.email" label="Company Email"-->
-<!--                    placeholder="Company Email"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"-->
-<!--                    placeholder="Address"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.cellNum" [errors]="errors.cellNum" label="Company Cell Number"-->
-<!--                    placeholder="Company Cell Number"></x-input-text>-->
-<!--      <x-input-text [(ngModel)]="model.workNo" [errors]="errors.workNo" label="Work"-->
-<!--                    placeholder="Work no"></x-input-text>-->
-
-<!--      <div *ngIf="serrors" class="bg-red-50 border border-red-500 p-2">-->
-<!--        <ol>-->
-<!--          <li class="text-xs text-red-500" *ngFor="let error of serrors">{{error}}</li>-->
-<!--        </ol>-->
-<!--      </div>-->
-<!--      <x-form-footer>-->
-<!--        <div></div>-->
-<!--        <x-button [busy]="busy" (onClick)="submit()">Continue</x-button>-->
-<!--      </x-form-footer>-->
-
-<!--    </x-form>-->
-
-<!--  </x-card>-->
+<x-page-center
+  title="Setup Carrier Profile"
+  help="Complete your business profile to start finding loads"
+>
+  <x-card>
+    <!--    main card div -->
+    <div class="flex h-full w-full p-8">
+      <!--    devider div left -->
+      <div class="h-full w-1/2 mr-4">
+        <x-form>
+          <h4 class="heading1 pb-8">Company Information</h4>
+          <x-input-radio></x-input-radio>
+          <x-input-text placeholder="MC#"></x-input-text>
+          <x-input-text placeholder="Company Name"></x-input-text>
+          <x-input-text placeholder="Title"></x-input-text>
+          <x-drop-down placeholder="State Operational"></x-drop-down>
+          <x-input-radio></x-input-radio>
+          <p class="text-xs text-gray-700 pb-8">Select payment option based on your preferences</p>
+          <h4 class="heading2 pb-8">Contact</h4>
+          <x-input-email></x-input-email>
+          <x-input-text></x-input-text>
+          <x-input-number></x-input-number>
+          <x-input-text></x-input-text>
 
 
-<!--</x-page-center>-->
-<!--</x-page>-->
+
+
+        </x-form>
+      </div>
+      <!--    devider div right -->
+      <div class="h-full w-1/2 ml-4">
+        <x-form>
+          <h4 class="pb-8">Documents</h4>
+          <x-input-file placeholder="Upload Insurance Certificate"></x-input-file>
+          <x-input-text placeholder="Insurance Agent"></x-input-text>
+          <x-input-file placeholder="MC or DOT Letter"></x-input-file>
+          <div class="flex grid grid-cols-2 space-x-3">
+            <x-input-file placeholder="Driving License Front"></x-input-file>
+            <x-input-file placeholder="Driving License Back"></x-input-file>
+          </div>
+          <div class="pt-8">
+            <h4>W9 Form</h4>
+            <p class="text-justify">
+              The W-9, or request for taxpayer identification number and certificate form provides a business with relevant personal information about an <a href=""> Independent Contract (IC) </a> or freelancer for Tax Purpose in the united states.
+            </p>
+            <p class="pt-2">
+              This Tax Docunment may be found online on the IRS website : <br>
+             <a href=""> www.Irs.gov. </a>
+            </p>
+          </div>
+          <div class="pt-8">
+            <x-input-file placeholder="W9 Document"></x-input-file>
+            <p> Download w9 form from the given link. Fill that form and upload the scanned copy W9 form.
+            </p>
+            <div class="flex justify-end">
+              <x-button>Continue</x-button>
+
+            </div>
+
+
+          </div>
+
+        </x-form>
+      </div>
+    </div>
+  </x-card>
+
+</x-page-center>
 
 <x-page-center title="Select your role" help="You can select your role from the given options.">
   <x-form>
