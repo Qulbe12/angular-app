@@ -29,6 +29,7 @@ import { ButtonWhiteComponent } from './button-white/button-white.component';
 import { InputRadioComponent } from './input-radio/input-radio.component';
 import { InputNumberComponent } from './input-number/input-number.component';
 import { InputRadioOptionComponent } from './input-radio-option/input-radio-option.component';
+import { InputFileComponent } from './input-file/input-file.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,11 @@ import { InputRadioOptionComponent } from './input-radio-option/input-radio-opti
     ButtonWhiteComponent,
     InputRadioComponent,
     InputNumberComponent,
+
     InputRadioOptionComponent,
+
+    InputFileComponent,
+
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -87,7 +92,11 @@ import { InputRadioOptionComponent } from './input-radio-option/input-radio-opti
     ButtonWhiteComponent,
     InputRadioComponent,
     InputNumberComponent,
+
     InputRadioOptionComponent,
+
+    InputFileComponent,
+
   ],
   providers: [CurrencyPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

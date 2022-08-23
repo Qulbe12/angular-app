@@ -1,3 +1,76 @@
+
+
+
+<x-page-center
+  title="Setup Carrier Profile"
+  help="Complete your business profile to start finding loads"
+>
+  <x-card>
+    <!--    main card div -->
+    <div class="flex h-full w-full p-8">
+      <!--    devider div left -->
+      <div class="h-full w-1/2 mr-4">
+        <x-form>
+          <h4 class="heading1 pb-8">Company Information</h4>
+          <x-input-radio></x-input-radio>
+          <x-input-text placeholder="MC#"></x-input-text>
+          <x-input-text placeholder="Company Name"></x-input-text>
+          <x-input-text placeholder="Title"></x-input-text>
+          <x-drop-down placeholder="State Operational"></x-drop-down>
+          <x-input-radio></x-input-radio>
+          <p class="text-xs text-gray-700 pb-8">Select payment option based on your preferences</p>
+          <h4 class="heading2 pb-8">Contact</h4>
+          <x-input-email></x-input-email>
+          <x-input-text></x-input-text>
+          <x-input-number></x-input-number>
+          <x-input-text></x-input-text>
+
+
+
+
+        </x-form>
+      </div>
+      <!--    devider div right -->
+      <div class="h-full w-1/2 ml-4">
+        <x-form>
+          <h4 class="pb-8">Documents</h4>
+          <x-input-file placeholder="Upload Insurance Certificate"></x-input-file>
+          <x-input-text placeholder="Insurance Agent"></x-input-text>
+          <x-input-file placeholder="MC or DOT Letter"></x-input-file>
+          <div class="flex grid grid-cols-2 space-x-3">
+            <x-input-file placeholder="Driving License Front"></x-input-file>
+            <x-input-file placeholder="Driving License Back"></x-input-file>
+          </div>
+          <div class="pt-8">
+            <h4>W9 Form</h4>
+            <p class="text-justify">
+              The W-9, or request for taxpayer identification number and certificate form provides a business with relevant personal information about an <a href=""> Independent Contract (IC) </a> or freelancer for Tax Purpose in the united states.
+            </p>
+            <p class="pt-2">
+              This Tax Docunment may be found online on the IRS website : <br>
+             <a href=""> www.Irs.gov. </a>
+            </p>
+          </div>
+          <div class="pt-8">
+            <x-input-file placeholder="W9 Document"></x-input-file>
+            <p> Download w9 form from the given link. Fill that form and upload the scanned copy W9 form.
+            </p>
+            <div class="flex justify-end">
+              <x-button>Continue</x-button>
+
+            </div>
+
+
+          </div>
+
+        </x-form>
+      </div>
+    </div>
+  </x-card>
+
+</x-page-center>
+
+
 <x-page-center title="Select your role" help="You can select your role from the given options.">
   <x-form>
     <x-input-text [(ngModel)]="model.licenseType" [errors]="errors.licenceType" label="Licence Type"
