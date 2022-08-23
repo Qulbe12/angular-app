@@ -7,11 +7,11 @@ import {
   ResetPasswordModel,
   ResetStatus
 } from "@trucks/core-shared";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 export interface ICarrierService {
-  register(model: CarrierProfileModel): Observable<ResetStatus> | Promise<ResetStatus>
-  }
+  register(model: CarrierProfileModel, req: any): Observable<ResetStatus> | Promise<ResetStatus>
+}
 
 
 export abstract class AbstractCarrierService implements ICarrierService {

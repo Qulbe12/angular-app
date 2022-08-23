@@ -1,7 +1,12 @@
-import { IS_NOT_EMPTY, IsEmail, IsNotEmpty, MaxLength, MinLength } from "class-validator";
+import {
+  IS_NOT_EMPTY,
+  IsEmail,
+  IsNotEmpty,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class LoginModel {
-
   @IsNotEmpty()
   @IsEmail()
   email = '';
@@ -10,9 +15,8 @@ export class LoginModel {
   @MinLength(6)
   password = '';
 
-  rememberMe = false
+  rememberMe = false;
 }
-
 
 export class ForgetPasswordModel {
   @IsNotEmpty()
@@ -25,81 +29,85 @@ export class ResetPasswordModel {
   @MinLength(6)
   password = '';
   @IsNotEmpty()
-  otp = ''
+  otp = '';
 
   @IsNotEmpty()
   @IsEmail()
-  email = ""
+  email = '';
 }
 
 export class RegisterModel {
-
   @IsNotEmpty()
-  name = ''
+  name = '';
 
   @IsNotEmpty()
   @IsEmail()
   email = '';
 
-
   password = '';
 
-
   // @ApiProperty()
-  terms = false
+  terms = false;
 }
 
 export class Roles {
-  carrier = ""
-  broker = ""
+  carrier = '';
+  broker = '';
 }
 
 export class SelectRoleModel {
   @IsNotEmpty()
-  role  = ''
+  role = '';
 }
 
 export class CarrierProfileModel {
-
   @IsNotEmpty()
-  licenceType = ''
+  licenseType = '';
+  @IsNotEmpty()
+  licenseNo = '';
   stateOperational = '';
   @IsNotEmpty()
-  companyName = ""
+  companyName = '';
   @IsNotEmpty()
-  name= ""
+  title = '';
   @IsNotEmpty()
-  title = ""
+  paymentOption = '';
   @IsNotEmpty()
-  address = ""
+  address = '';
   @IsNotEmpty()
   @IsEmail()
-  companyEmail = ""
+  email = '';
   @IsNotEmpty()
-  companyCellNum = ""
+  cellNo = '';
   @IsNotEmpty()
-  work= ""
-  goalDesc = ""
-  pic = ""
+  workNo = '';
+  @IsNotEmpty()
+  insuranceCertFile = '';
+  @IsNotEmpty()
+  insuranceAgent = '';
+  @IsNotEmpty()
+  licenseLetterFile = '';
+  @IsNotEmpty()
+  drivingLicFrontFile = '';
+  @IsNotEmpty()
+  drivingLicBackFile = '';
+  @IsNotEmpty()
+  w9FormFile = '';
 }
 
 export class vehicleRegistration {
-
   @IsNotEmpty()
-  vehicleType = ""
+  vehicleType = '';
   @IsNotEmpty()
-  sleeper = ""
+  sleeper = '';
   @IsNotEmpty()
-  daycab = ""
+  daycab = '';
   @IsNotEmpty()
-  year = ""
+  year = '';
   @IsNotEmpty()
-  vin = ""
+  vin = '';
   @IsNotEmpty()
-  truckType = ""
+  truckType = '';
   @IsNotEmpty()
-  trailerType = ""
+  trailerType = '';
 }
-
-
-

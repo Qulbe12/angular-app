@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 
 
 @Injectable()
-export class AccountMockService implements ICarrierService {
+export class CarrierMockService implements ICarrierService {
   register(model: CarrierProfileModel): Observable<ResetStatus> {
       const observable = new Observable<ResetStatus>(observer => {
         const dto = {status : "123654"};

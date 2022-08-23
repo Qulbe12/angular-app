@@ -56,7 +56,7 @@ export class AccountService implements IAccountService {
 
   assignRole(model: SelectRoleModel): Observable<AuthUserDto> {
     return this.http.post<AuthUserDto>(
-      'http://localhost:3333/api/account/reset-password',
+      'http://localhost:3333/api/account/assign-role',
       model
     );
   }

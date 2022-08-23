@@ -1,3 +1,5 @@
 export * from './account/account.interface'
 export * from './account/account.service'
+export * from './carrier/carrier.interface'
+export * from './carrier/carrier.service'
 // export * from './account/account.mock-service'
