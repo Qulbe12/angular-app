@@ -1,4 +1,6 @@
 
+
+
 <x-page-center
   title="Setup Carrier Profile"
   help="Complete your business profile to start finding loads"
@@ -68,6 +70,7 @@
 
 </x-page-center>
 
+
 <x-page-center title="Select your role" help="You can select your role from the given options.">
   <x-form>
     <x-input-text [(ngModel)]="model.licenseType" [errors]="errors.licenceType" label="Licence Type"
@@ -100,8 +103,9 @@
                   placeholder="Licence Letter File"></x-input-text>
             <x-input-text [(ngModel)]="model.drivingLicBackFile" [errors]="errors.drivingLicBackFile" label="Licence Letter File"
                   placeholder="Licence Letter File"></x-input-text>
-    <x-input-text [(ngModel)]="model.w9FormFile" [errors]="errors.w9FormFile" label="w9form"
+            <x-input-text [(ngModel)]="model.w9FormFile" [errors]="errors.w9FormFile" label="w9form"
                   placeholder="w9form"></x-input-text>
+            <x-input-radio-option></x-input-radio-option>
             <x-button (click)="submit()">Submit</x-button>
   </x-form>
 </x-page-center>

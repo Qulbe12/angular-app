@@ -21,7 +21,6 @@
   },
   "targetDefaults": {
     "build": {
-
       "dependsOn": ["^build"]
     }
   },
