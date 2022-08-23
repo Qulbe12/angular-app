@@ -28,6 +28,7 @@ import { InputImageComponent } from './input-image/input-image.component';
 import { ButtonWhiteComponent } from './button-white/button-white.component';
 import { InputRadioComponent } from './input-radio/input-radio.component';
 import { InputNumberComponent } from './input-number/input-number.component';
+import { InputFileComponent } from './input-file/input-file.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { InputNumberComponent } from './input-number/input-number.component';
     ButtonWhiteComponent,
     InputRadioComponent,
     InputNumberComponent,
+    InputFileComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -84,7 +86,8 @@ import { InputNumberComponent } from './input-number/input-number.component';
     InputImageComponent,
     ButtonWhiteComponent,
     InputRadioComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    InputFileComponent,
   ],
   providers: [CurrencyPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
