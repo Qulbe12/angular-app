@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: "vehicle-registration",
     component: VehicleRegistrationComponent
+
   },
   {
     path: "add-truck",
