@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CarrierProfileModel, ResetStatus } from '@trucks/core-shared';
@@ -22,6 +22,11 @@ export class CarrierController implements ICarrierService {
     @Post('register')
     async register(@Body() model: CarrierProfileModel, @Request() req): Promise<ResetStatus> {
 
+
+        const isEmailNotAvailable = await this.carrierRepo.findOneBy({ email: model.email })
+        if (isEmailNotAvailable) {
+            throw new HttpException('email already taken , enter other email ', HttpStatus.BAD_REQUEST)
+        }
         const newCarrier = this.carrierRepo.create(model)
         newCarrier.user = req.user as User
         await this.carrierRepo.save(newCarrier)

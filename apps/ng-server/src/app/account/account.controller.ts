@@ -112,7 +112,7 @@ export class AccountController implements IAccountService {
         }
         const newOtp = new OTP
         newOtp.userOtp = Math.floor(100000 + Math.random() * 900000).toString()
-        // console.log(newOtp.userOtp)
+        console.log(newOtp.userOtp)
         newOtp.userOtp = bcrypt.hashSync(newOtp.userOtp, 10)
         newOtp.user = foundUser
         newOtp.createdAt = new Date()
