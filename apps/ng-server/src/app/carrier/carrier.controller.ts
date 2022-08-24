@@ -14,7 +14,11 @@ import { JwtAuthGuard } from '../_strategies/jwt.strategy';
 @Controller('carrier')
 export class CarrierController implements ICarrierService {
 
-    constructor(@InjectRepository(Carrier) private carrierRepo: Repository<Carrier>) { }
+    constructor(
+
+        @InjectRepository(Carrier) private carrierRepo: Repository<Carrier>,
+        @InjectRepository(User) private userRepo: Repository<User>,
+    ) { }
 
 
 
@@ -22,15 +26,18 @@ export class CarrierController implements ICarrierService {
     @Post('register')
     async register(@Body() model: CarrierProfileModel, @Request() req): Promise<ResetStatus> {
 
-
+        const user = await this.userRepo.findOneBy({ id: req.user.id })
+        const carrier = await user.carrier
+        if (carrier) {
+            throw new HttpException('carrier already exists', HttpStatus.BAD_REQUEST)
+        }
         const isEmailNotAvailable = await this.carrierRepo.findOneBy({ email: model.email })
         if (isEmailNotAvailable) {
             throw new HttpException('email already taken , enter other email ', HttpStatus.BAD_REQUEST)
         }
         const newCarrier = this.carrierRepo.create(model)
-        newCarrier.user = req.user as User
+        newCarrier.user = Promise.resolve(req.user as User)
         await this.carrierRepo.save(newCarrier)
-
         return { status: 'ok' }
     }
 
