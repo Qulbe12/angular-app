@@ -1,1 +1,34 @@
-<p>vehicle-registration works!</p>
+
+<x-page-center title="Truck Registration Page" help="Complete your business profile to start finding loads">
+  <div class="w-[500px]">
+  <x-card>
+  <div>
+    <div class="py-8">
+    <h5>Truck Information</h5>
+  </div>
+
+  <x-input-text placeholder="Vehicle Name"></x-input-text>
+    <x-input-text placeholder="Vehicle Identification Number"></x-input-text>
+    <x-input-text placeholder="Model Year"></x-input-text>
+
+    <div class="pt-8">
+    <h5 class="pb-8">Truck Type</h5>
+    <x-input-radio-option> </x-input-radio-option>
+    </div>
+    <div class="pt-8">
+    <h5 class="pb-8">Trailer Type</h5>
+      <x-input-radio-option></x-input-radio-option>
+      <div class="pt-4">
+    <x-input-radio-option></x-input-radio-option>
+      </div>
+      <div class="flex justify-end py-8">
+    <x-button class="">Continue</x-button>
+      </div>
+    </div>
+  </div>
+
+  </x-card>
+  </div>
+
+</x-page-center>
+
