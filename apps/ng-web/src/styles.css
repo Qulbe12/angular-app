@@ -5,7 +5,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body{
-  @apply bg-gray-100;
+  background-color: #F7FBFD;
 }
 
 
@@ -14,7 +14,7 @@ body{
 /*headings*/
 
 h1,h2,h3,h4,h5,h6{
-  @apply font-bold text-gray-800
+  @apply font-extrabold text-gray-800 uppercase
 }
 
 h1{
@@ -29,20 +29,35 @@ h3{
   @apply  text-xl;
 }
 
+h4{
+  @apply text-lg;
+}
+
+h5{
+  @apply  text-base;
+}
+
+h6{
+  @apply  text-xs;
+}
+
+a{
+  @apply text-blue-600 hover:underline
+}
 
 /*paragraph*/
 
 p{
-  @apply text-base text-gray-800;
+  @apply text-base text-gray-800 ;
 }
 
 /*span*/
 span{
-  @apply text-base text-gray-800;
+  @apply text-base text-gray-800 ;
 }
 /*small*/
 small{
-  @apply text-sm text-gray-800;
+  @apply text-sm text-gray-800 ;
 }
 
 .text-blue {

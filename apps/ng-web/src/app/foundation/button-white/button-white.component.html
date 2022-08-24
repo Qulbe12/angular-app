@@ -1,0 +1,4 @@
+<button (click)="handle()" [class]="{'enabled': !busy}" type="submit"   >
+  <ng-content></ng-content> <div *ngIf="busy"> ...</div>
+
+</button>

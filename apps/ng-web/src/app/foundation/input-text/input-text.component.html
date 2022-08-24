@@ -1,0 +1,9 @@
+<div class="relative">
+  <label>{{label}}</label>
+  <input type="text" [class]="{'invalid' : errors}" [(ngModel)]="value" [placeholder]="placeholder"/>
+  <ol class="text-red-600" *ngIf="errors">
+    <li class="text-xs" *ngFor="let error of errors">
+      {{error}}
+    </li>
+  </ol>
+</div>

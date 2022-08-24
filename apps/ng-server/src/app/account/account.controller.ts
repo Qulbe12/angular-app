@@ -1,6 +1,8 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LoginModel, RegisterModel, ForgetPassword, AuthUserDto, ResetPassword } from '@trucks/core-shared';
+
+import { LoginModel, RegisterModel, AuthUserDto, Otp, ResetStatus, ForgetPasswordModel, ResetPasswordModel, SelectRoleModel } from '@trucks/core-shared';
+
 '@trucks/core-shared';
 import { IAccountService } from '@trucks/ng-services';
 import { Observable } from 'rxjs';
@@ -8,17 +10,46 @@ import { Repository } from 'typeorm';
 import { User } from '../_entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { MailerService } from '@nestjs-modules/mailer'
+import { ApiBearerAuth } from '@nestjs/swagger';
+import * as bcrypt from 'bcrypt';
+import { OTP } from '../_entities/otp.entity';
+import { JwtAuthGuard } from '../_strategies/jwt.strategy';
 
-
+@ApiBearerAuth()
 @Controller('account')
-export class AccountController {
+export class AccountController implements IAccountService {
 
 
     constructor(
         @InjectRepository(User) private userRepo: Repository<User>,
+        @InjectRepository(OTP) private otpRepo: Repository<OTP>,
         private jwtService: JwtService,
         private mailerService: MailerService
-    ) { }
+    ) {
+        // userRepo.clear()
+        // otpRepo.clear()
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('assign-role')
+    async assignRole(@Body() model: SelectRoleModel, @Request() req): Promise<AuthUserDto> {
+
+        const authUser = req.user as User
+        authUser.role = model.role
+        const payload = { id: authUser.id, email: authUser.email, }
+        const accessToken = this.jwtService.sign(payload)
+        await this.userRepo.save(authUser)
+        return {
+            name: authUser.name,
+            email: authUser.email,
+            token: accessToken,
+            role: authUser.role
+        }
+
+
+    }
+
+
 
 
 
@@ -27,76 +58,97 @@ export class AccountController {
 
         const isEmailNotAvailable = await this.userRepo.findOneBy({ email: model.email })
         if (isEmailNotAvailable) {
-            throw new HttpException('email already taken , enter other email ', HttpStatus.UNAUTHORIZED)
+            throw new HttpException('email already taken , enter other email ', HttpStatus.BAD_REQUEST)
         }
-        const savedUser = await this.userRepo.save(model)
+
+        const { name, email } = model
+        const password = bcrypt.hashSync(model.password, 10)
+        const createUser = this.userRepo.create({ name, email, password })
+        const savedUser = await this.userRepo.save(createUser)
         const payload = { id: savedUser.id, email: savedUser.email, }
         const accessToken = this.jwtService.sign(payload)
         return {
+            name: savedUser.name,
             email: savedUser.email,
             token: accessToken,
+            role: savedUser.role
         }
 
     }
+
+
+
     @Post('login')
     async login(@Body() model: LoginModel): Promise<AuthUserDto> {
         const foundUser = await this.userRepo.findOneBy({ email: model.email })
-        if (foundUser && foundUser.password == model.password) {
+        if (foundUser && await bcrypt.compare(model.password, foundUser.password)) {
             const payload = { id: foundUser.id, email: foundUser.email, }
             const accessToken = this.jwtService.sign(payload)
             return {
                 email: foundUser.email,
-                token: accessToken
+                token: accessToken,
+                name: foundUser.name,
+                role: foundUser.role
             }
+
         } else {
             throw new HttpException('invalid email or password', HttpStatus.UNAUTHORIZED)
         }
     }
-    @Post('forget')
-    async forgetPassword(@Body() model: ForgetPassword) {
 
-        const found = await this.userRepo.findOneBy({ email: model.email })
-        if (!found) {
+
+
+
+    @Post('forget-password')
+    async forgetPassword(@Body() model: ForgetPasswordModel): Promise<boolean> {
+
+        const foundUser = await this.userRepo.findOneBy({ email: model.email })
+        if (!foundUser) {
             throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
         }
-        else {
-            const payload = { id: found.id, email: found.email, }
-            const accessToken = this.jwtService.sign(payload)
-            this.sendResetLink(found.email)
-            return {
-                email: found.email,
-                token: accessToken
-            }
+        const deleteExistingOtp = await foundUser.otp
+        if (deleteExistingOtp) {
+            await this.otpRepo.delete(deleteExistingOtp.id)
         }
+        const newOtp = new OTP
+        newOtp.userOtp = Math.floor(100000 + Math.random() * 900000).toString()
+        console.log(newOtp.userOtp)
+        newOtp.userOtp = bcrypt.hashSync(newOtp.userOtp, 10)
+        newOtp.user = foundUser
+        newOtp.createdAt = new Date()
+        newOtp.createdAt.setMinutes(newOtp.createdAt.getMinutes() + 30); // timestamp
+        newOtp.createdAt = new Date(newOtp.createdAt)
+        // send otp to user email
+        // this.sendResetLink(found.email)
+        await this.otpRepo.save(newOtp)
+        throw new HttpException('success', HttpStatus.OK)
     }
 
 
-    resetPassword(model: ResetPassword): string | Observable<string> {
-        throw new Error('Method not implemented.');
+
+    @Post('reset-password')
+    async resetPassword(@Body() model: ResetPasswordModel): Promise<boolean> {
+
+        const user = await this.userRepo.findOneBy({ email: model.email })
+        if (!user) {
+            throw new HttpException('invalid email', HttpStatus.UNAUTHORIZED)
+        }
+        const date = new Date()
+        const foundOtp = await user.otp
+        if (!foundOtp || foundOtp.createdAt < date) {
+            throw new HttpException('invalid otp or expired ', HttpStatus.UNAUTHORIZED)
+        }
+
+        foundOtp.user.password = bcrypt.hashSync(model.password, 10)
+        await this.userRepo.save(foundOtp.user)
+        await this.otpRepo.delete(foundOtp.id)
+        throw new HttpException('success', HttpStatus.OK)
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -106,6 +158,7 @@ export class AccountController {
 
 
     // helpers
+    // send email ,, email template has to be made yet
     sendResetLink(toEmail: string) {
         this.mailerService
             .sendMail({

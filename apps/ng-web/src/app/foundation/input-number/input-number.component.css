@@ -1,0 +1,39 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input{
+  @apply
+  w-full
+  border
+  border-gray-300
+  text-gray-900
+  text-sm
+  focus:border-blue-500
+  block
+  p-2.5
+}
+
+
+label {
+  @apply text-sm
+}
+
+div{
+  @apply space-y-1
+}
+
+
+svg {
+  @apply text-gray-400 absolute  top-[33px]  my-auto right-3 cursor-pointer hover:text-gray-500 active:text-gray-600 h-6 w-6
+}
+
+
+.invalid {
+  @apply border-red-600  focus:border-red-500
+}
