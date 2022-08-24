@@ -16,6 +16,28 @@ export class CarrierProfileComponent extends NgBaseComponent{
 
   model = new CarrierProfileModel()
 
+  options1 = [
+    {
+      title: 'MC',
+      value: 'MC',
+    },
+    {
+      title: 'Dot',
+      value: 'Dot',
+    }
+  ];
+
+  options2 = [
+    {
+      title: '1.2% Daily',
+      value: '1.2% Daily',
+    },
+    {
+      title: '2.3% Weekly',
+      value: 'Weekly',
+    }
+  ];
+
   submit() {
     this.busy = true
 
@@ -26,6 +48,7 @@ export class CarrierProfileComponent extends NgBaseComponent{
         //success
         data => {
           localStorage.setItem('user', JSON.stringify(data));
+
           this.router.navigate(['/dashboard']);
         },
         //error
