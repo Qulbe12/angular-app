@@ -10,6 +10,7 @@ import { PartialsModule } from './partials/partials.module';
 import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-configurator.interceptor";
 import { CarrierModule } from './carrier/carrier.module';
 import { BrokerModule } from './broker/broker.module';
+import { TestModule } from './test/test.module';
 
 
 
@@ -19,7 +20,7 @@ import { BrokerModule } from './broker/broker.module';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule, HttpClientModule, PartialsModule, CarrierModule, BrokerModule
+    AdminModule, HttpClientModule, PartialsModule, CarrierModule, BrokerModule, TestModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenConfiguratorInterceptor, multi: true }],
