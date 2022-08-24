@@ -19,7 +19,7 @@ export class InputRadioOptionComponent extends ControlBaseComponent<string>{
   }]
 
   @Input()
-  label=""
+  label="label"
 
   @Input()
   errors: string[] | null = null;

@@ -12,22 +12,18 @@
       <div class="h-full w-1/2 mr-4">
         <x-form>
           <h4 class="heading1 pb-8">Company Information</h4>
-          <x-input-radio></x-input-radio>
+          <x-input-radio-option [options]="options1" ></x-input-radio-option>
           <x-input-text placeholder="MC#"></x-input-text>
           <x-input-text placeholder="Company Name"></x-input-text>
           <x-input-text placeholder="Title"></x-input-text>
           <x-drop-down placeholder="State Operational"></x-drop-down>
-          <x-input-radio></x-input-radio>
+          <x-input-radio-option [options]="options2"></x-input-radio-option>
           <p class="text-xs text-gray-700 pb-8">Select payment option based on your preferences</p>
           <h4 class="heading2 pb-8">Contact</h4>
-          <x-input-email></x-input-email>
-          <x-input-text></x-input-text>
-          <x-input-number></x-input-number>
-          <x-input-text></x-input-text>
-
-
-
-
+          <x-input-email placeholder="E-mail" label="Email"></x-input-email>
+          <x-input-text placeholder="Address" label="Address"></x-input-text>
+          <x-input-number placeholder="Cell #" label="Cell"></x-input-number>
+          <x-input-text placeholder="Work #" label="Work"></x-input-text>
         </x-form>
       </div>
       <!--    devider div right -->
@@ -35,7 +31,7 @@
         <x-form>
           <h4 class="pb-8">Documents</h4>
           <x-input-file placeholder="Upload Insurance Certificate"></x-input-file>
-          <x-input-text placeholder="Insurance Agent"></x-input-text>
+          <x-input-text placeholder="Insurance Agent" label="Insurance Agent"></x-input-text>
           <x-input-file placeholder="MC or DOT Letter"></x-input-file>
           <div class="flex grid grid-cols-2 space-x-3">
             <x-input-file placeholder="Driving License Front"></x-input-file>
@@ -71,43 +67,43 @@
 </x-page-center>
 
 
-<x-page-center title="Select your role" help="You can select your role from the given options.">
-  <x-form>
-    <x-input-text [(ngModel)]="model.licenseType" [errors]="errors.licenceType" label="Licence Type"
-                   placeholder="Licence Type"></x-input-text>
-            <x-input-text [(ngModel)]="model.licenseNo" [errors]="errors.licenceNo" label="Licence Type"
-                          placeholder="Licence Type"></x-input-text>
-            <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"
-                          placeholder="Company Name"></x-input-text>
-            <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"
-                         placeholder="Title"></x-input-text>
-            <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"
-                              placeholder="secret"></x-input-text>
-            <x-input-text [(ngModel)]="model.paymentOption" [errors]="errors.paymentMethod" label="Payment Option"
-                          placeholder="Payment Option"></x-input-text>
-            <x-input-text [(ngModel)]="model.email" [errors]="errors.email" label="Company Email"
-                          placeholder="Company Email"></x-input-text>
-            <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"
-                          placeholder="Address"></x-input-text>
-            <x-input-text [(ngModel)]="model.cellNo" [errors]="errors.cellNum" label="Company Cell Number"
-                          placeholder="Company Cell Number"></x-input-text>
-            <x-input-text [(ngModel)]="model.workNo" [errors]="errors.workNo" label="Work"
-                          placeholder="Work no"></x-input-text>
-            <x-input-text [(ngModel)]="model.insuranceCertFile" [errors]="errors.insuranceCertFile" label="Insurance Certificate"
-                          placeholder="Insurance Certificate"></x-input-text>
-            <x-input-text [(ngModel)]="model.insuranceAgent" [errors]="errors.insuranceAgent" label="Insurance Agent"
-                  placeholder="Insurnace Agent"></x-input-text>
-            <x-input-text [(ngModel)]="model.licenseLetterFile" [errors]="errors.licenceLetterFile" label="Licence Letter File"
-                  placeholder="Licence Letter File"></x-input-text>
-            <x-input-text [(ngModel)]="model.drivingLicFrontFile" [errors]="errors.drivingLicFrontFile" label="Licence Letter File"
-                  placeholder="Licence Letter File"></x-input-text>
-            <x-input-text [(ngModel)]="model.drivingLicBackFile" [errors]="errors.drivingLicBackFile" label="Licence Letter File"
-                  placeholder="Licence Letter File"></x-input-text>
-            <x-input-text [(ngModel)]="model.w9FormFile" [errors]="errors.w9FormFile" label="w9form"
-                  placeholder="w9form"></x-input-text>
-            <x-input-radio-option></x-input-radio-option>
-            <x-button (click)="submit()">Submit</x-button>
-  </x-form>
-</x-page-center>
+<!--<x-page-center title="Select your role" help="You can select your role from the given options.">-->
+<!--  <x-form>-->
+<!--    <x-input-text [(ngModel)]="model.licenseType" [errors]="errors.licenceType" label="Licence Type"-->
+<!--                   placeholder="Licence Type"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.licenseNo" [errors]="errors.licenceNo" label="Licence Type"-->
+<!--                          placeholder="Licence Type"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.companyName" [errors]="errors.companyName" label="Company Name"-->
+<!--                          placeholder="Company Name"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.title" [errors]="errors.title" label="Title"-->
+<!--                         placeholder="Title"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.stateOperational" [errors]="errors.stateOperational" label="State Operation (Optional)"-->
+<!--                              placeholder="secret"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.paymentOption" [errors]="errors.paymentMethod" label="Payment Option"-->
+<!--                          placeholder="Payment Option"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.email" [errors]="errors.email" label="Company Email"-->
+<!--                          placeholder="Company Email"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.address" [errors]="errors.address" label="Address"-->
+<!--                          placeholder="Address"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.cellNo" [errors]="errors.cellNum" label="Company Cell Number"-->
+<!--                          placeholder="Company Cell Number"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.workNo" [errors]="errors.workNo" label="Work"-->
+<!--                          placeholder="Work no"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.insuranceCertFile" [errors]="errors.insuranceCertFile" label="Insurance Certificate"-->
+<!--                          placeholder="Insurance Certificate"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.insuranceAgent" [errors]="errors.insuranceAgent" label="Insurance Agent"-->
+<!--                  placeholder="Insurnace Agent"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.licenseLetterFile" [errors]="errors.licenceLetterFile" label="Licence Letter File"-->
+<!--                  placeholder="Licence Letter File"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.drivingLicFrontFile" [errors]="errors.drivingLicFrontFile" label="Licence Letter File"-->
+<!--                  placeholder="Licence Letter File"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.drivingLicBackFile" [errors]="errors.drivingLicBackFile" label="Licence Letter File"-->
+<!--                  placeholder="Licence Letter File"></x-input-text>-->
+<!--            <x-input-text [(ngModel)]="model.w9FormFile" [errors]="errors.w9FormFile" label="w9form"-->
+<!--                  placeholder="w9form"></x-input-text>-->
+<!--            <x-input-radio-option></x-input-radio-option>-->
+<!--            <x-button (click)="submit()">Submit</x-button>-->
+<!--  </x-form>-->
+<!--</x-page-center>-->
 
 
