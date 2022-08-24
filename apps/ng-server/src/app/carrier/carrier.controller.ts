@@ -39,6 +39,7 @@ export class CarrierController implements ICarrierService {
         newCarrier.user = Promise.resolve(req.user as User)
         await this.carrierRepo.save(newCarrier)
         return { status: 'ok' }
+        // comment
     }
 
 
