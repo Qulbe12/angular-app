@@ -41,7 +41,7 @@ export class Carrier {
     w9FormFile: string
 
 
-    @OneToOne(() => User, (user) => user.carrier, { cascade: true, eager: true })
+    @OneToOne(() => User, (user) => user.carrier, { cascade: true })
     @JoinColumn()
-    user: User
+    user: Promise<User>
 }
