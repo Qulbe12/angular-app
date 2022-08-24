@@ -9,11 +9,16 @@ import { FoundationModule } from '../foundation/foundation.module';
 import { FormsModule } from '@angular/forms';
 import { CarrierService } from '@trucks/ng-services';
 import { VehicleRegistrationComponent } from './vehicle-registration/vehicle-registration.component';
+import { AddTruckComponent } from './add-truck/add-truck.component';
 
 @NgModule({
-  declarations: [CarrierProfileComponent, VehicleRegistrationComponent],
+  declarations: [
+    CarrierProfileComponent,
+    VehicleRegistrationComponent,
+    AddTruckComponent,
+  ],
   imports: [CommonModule, CarrierRoutingModule, FoundationModule, FormsModule],
   providers: [{ provide: AbstractCarrierService, useClass: CarrierService }],
-  exports: [VehicleRegistrationComponent],
+  exports: [VehicleRegistrationComponent, AddTruckComponent ],
 })
 export class CarrierModule {}

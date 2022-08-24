@@ -1,0 +1,44 @@
+<x-side-bar></x-side-bar>
+<x-page-center title="Add Truck">
+  <div class="flex space-x-1 text-sm">
+    <a href="http://localhost:4200/add-truck" class="text-slate-500"
+      >Dashboard</a
+    >
+    <p class="text-sm">/</p>
+    <a href="http://localhost:4200/add-truck" class="text-slate-500">Trucks</a>
+    <p class="text-sm">/</p>
+    <a href="http://localhost:4200/add-truck" class="text-black font-semibold"
+      >Add Trucks</a
+    >
+  </div>
+  <div class="w-[500px] mt-16">
+    <x-card>
+      <h5 class="pt-8">Truck Information</h5>
+      <x-input-text placeholder="Vehicle Name" class="pt-4"> </x-input-text>
+      <x-input-number placeholder="Vehicle Identification Number" class="pt-3">
+      </x-input-number>
+      <x-input-number placeholder="Model Number" class="pt-3"></x-input-number>
+      <h5 class="pt-6">Truck Type</h5>
+
+      <x-input-radio-option class="pt-10"> </x-input-radio-option>
+
+      <h5 class="pt-6">Trailer Type</h5>
+
+      <x-input-radio-option class="pt-10"> </x-input-radio-option>
+
+      <x-input-radio-option class="pt-5"> </x-input-radio-option>
+
+      <h5 class="pt-6">Status</h5>
+      <div
+        class="flex mt-10 w-52 h-8 border-[1px] justify-start border-slate-400"
+      >
+        <x-input-check class="pt-[6px] pl-[5px] font-semibold"
+          >Active</x-input-check
+        >
+      </div>
+      <div class="flex justify-end pb-8">
+        <x-button>Save</x-button>
+      </div>
+    </x-card>
+  </div>
+</x-page-center>
