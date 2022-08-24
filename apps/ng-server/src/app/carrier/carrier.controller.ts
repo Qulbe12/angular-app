@@ -1,4 +1,5 @@
-import { Body, Controller, HttpException, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CarrierProfileModel, ResetStatus } from '@trucks/core-shared';
@@ -41,6 +42,16 @@ export class CarrierController implements ICarrierService {
         return { status: 'ok' }
         // comment
     }
+    @UseGuards(JwtAuthGuard)
+    @Post('upload')
+    upload() {
+        console.log("hits")
+    }
+    // @UseInterceptors(FileInterceptor('photo', { dest: './uploads' }))
+    // uploadSingle(@UploadedFile() file) {
+    //     console.log(file);
+    //     throw new HttpException('success', HttpStatus.OK)
+    // }
 
 
 
