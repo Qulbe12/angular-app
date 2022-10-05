@@ -40,7 +40,7 @@ import { PasswordUpdatedComponent } from './password-updated/password-updated.co
     PartialsModule,
   ],
   providers: [
-    { provide: AbstractAccountService, useClass: AccountService },
+    { provide: AbstractAccountService, useClass: AccountMockService },
   ],
 
 })

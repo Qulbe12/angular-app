@@ -22,11 +22,5 @@ import { AddTruckComponent } from './add-truck/add-truck.component';
   providers: [{ provide: AbstractCarrierService, useClass: CarrierService }],
   exports: [VehicleRegistrationComponent, AddTruckComponent ],
 
-@NgModule({
-  declarations: [CarrierProfileComponent, VehicleRegistrationComponent],
-  imports: [CommonModule, CarrierRoutingModule, FoundationModule, FormsModule],
-  providers: [{ provide: AbstractCarrierService, useClass: CarrierService }],
-  exports: [VehicleRegistrationComponent],
-
 })
 export class CarrierModule {}

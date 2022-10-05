@@ -30,6 +30,7 @@ import { InputRadioComponent } from './input-radio/input-radio.component';
 import { InputNumberComponent } from './input-number/input-number.component';
 import { InputRadioOptionComponent } from './input-radio-option/input-radio-option.component';
 import { InputFileComponent } from './input-file/input-file.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { InputFileComponent } from './input-file/input-file.component';
     InputFileComponent,
 
   ],
-  imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, RouterModule],
   exports: [
     SwitchComponent,
     NavbarComponent,
