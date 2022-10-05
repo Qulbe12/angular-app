@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 // @ts-ignore
 @Component({
@@ -6,14 +6,17 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './nav-bar-dashboard.component.html',
   styleUrls: ['./nav-bar-dashboard.component.css'],
 })
-export class NavBarDashboardComponent implements OnInit{
+export class NavBarDashboardComponent {
   constructor(@Inject(DOCUMENT)  document:Document) {
 
   }
 
-  ngOnInit(): void {
+  @Input()
+  label = ""
+  @Input()
+  routerLink = ""
 
-  }
+
 
   toggleAsideNav(){
    const sideBar =  document.getElementById('sidebar') as HTMLElement
