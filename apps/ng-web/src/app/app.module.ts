@@ -11,6 +11,7 @@ import {AuthTokenConfiguratorInterceptor} from "./_core/interceptors/auth-token-
 import { CarrierModule } from './carrier/carrier.module';
 import { BrokerModule } from './broker/broker.module';
 import { TestModule } from './test/test.module';
+import { HomeModule } from './home/home.module';
 
 
 
@@ -20,7 +21,7 @@ import { TestModule } from './test/test.module';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     AccountModule,
-    AdminModule, HttpClientModule, PartialsModule, CarrierModule, BrokerModule, TestModule
+    AdminModule, HttpClientModule, PartialsModule, CarrierModule, BrokerModule, TestModule, HomeModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenConfiguratorInterceptor, multi: true }],
