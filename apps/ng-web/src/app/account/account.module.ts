@@ -22,26 +22,29 @@ import { PasswordUpdatedComponent } from './password-updated/password-updated.co
 
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ForgetPasswordComponent,
-    ResetPasswordComponent,
-    RolesComponent,
-    TestOneComponent,
-    TestTwoComponent,
-    PasswordUpdatedComponent,
-  ],
-  imports: [
-    CommonModule,
-    FoundationModule,
-    AccountRoutingModule,
-    FormsModule,
-    PartialsModule,
-  ],
-  providers: [
-    { provide: AbstractAccountService, useClass: AccountMockService },
-  ],
+    declarations: [
+        LoginComponent,
+        RegisterComponent,
+        ForgetPasswordComponent,
+        ResetPasswordComponent,
+        RolesComponent,
+        TestOneComponent,
+        TestTwoComponent,
+        PasswordUpdatedComponent,
+    ],
+    imports: [
+        CommonModule,
+        FoundationModule,
+        AccountRoutingModule,
+        FormsModule,
+        PartialsModule,
+    ],
+    providers: [
+        {provide: AbstractAccountService, useClass: AccountMockService},
+    ],
 
+    exports: [
+        LoginComponent
+    ]
 })
 export class AccountModule {}
